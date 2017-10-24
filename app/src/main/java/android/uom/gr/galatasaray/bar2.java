@@ -30,6 +30,7 @@ public class bar2 extends android.support.v4.app.Fragment {
     ArrayAdapter<String> tableListAdapter;
     ListView listTable;
     SwipeRefreshLayout swip;
+    String key="dffbf01eecc3cef8a8dab1e3d05b720f9d2335be742cf048b86161544d4f91b6";
 
 
     private String[] data = {
@@ -122,7 +123,7 @@ public class bar2 extends android.support.v4.app.Fragment {
                 // Possible parameters are avaiable at OWM's forecast API page, at
                 // http://openweathermap.org/API#forecast
                 //MODIFIED FOR CITY OF THESSALONIKI, GREECE
-                URL url = new URL("https://apifootball.com/api/?action=get_standings&league_id=376&APIkey=dffbf01eecc3cef8a8dab1e3d05b720f9d2335be742cf048b86161544d4f91b6");
+                URL url = new URL("https://apifootball.com/api/?action=get_standings&league_id=376&APIkey="+key);
 
                 // Create the request to OpenWeatherMap, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
