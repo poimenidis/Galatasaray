@@ -75,7 +75,7 @@ public class bar3 extends android.support.v4.app.Fragment {
 
         listAdapter =
                 new ArrayAdapter<String>
-                        (this.getContext(),R.layout.textviewcustomed, R.id.list_item_players_textview,playersList);
+                        (this.getContext(),R.layout.textviewcustomedplayers, R.id.list_item_players_textview,playersList);
         //(σε ποιο activity ειμαστε, το layout που χρησιμοποιουμε,το id του textview που θελουμε να γινουν τα αντικειμενα, την λιστα)   !!!
         //σκοπος ειναι να κανει τα τα αντικειμενα της λιστας, TextView
 
