@@ -80,6 +80,8 @@ public class bar2 extends android.support.v4.app.Fragment {
         listTable = (ListView) view.findViewById(R.id.listTable);
         listTable.setAdapter(tableListAdapter);
 
+        FetchTableTask task = new FetchTableTask();
+        task.execute();
 
 
         return view;
