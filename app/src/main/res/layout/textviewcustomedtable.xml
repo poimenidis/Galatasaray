@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_dark"
     android:weightSum="1">
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -14,62 +16,68 @@
 
 
         <TextView
-            android:id="@+id/Number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="1"
+            android:id="@+id/Position"
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="-23dp"
+            android:layout_marginTop="-4dp"
+            android:text="10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/TeamName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="23dp"
-            android:layout_marginStart="23dp"
-            android:layout_toEndOf="@+id/Number"
-            android:layout_toRightOf="@+id/Number"
+            android:layout_width="110dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="-5dp"
             android:text="Galatasaray"
-            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
+            app:layout_constraintLeft_toRightOf="@+id/Position"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            />
 
+        <TextView
+            android:id="@+id/Played"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="41dp"
+            android:layout_marginTop="-4dp"
+            android:text="10"
+            app:layout_constraintLeft_toRightOf="@+id/TeamName"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/GD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-15"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="-4dp"
+            android:text="10"
+            app:layout_constraintLeft_toRightOf="@+id/Played"
+            app:layout_constraintTop_toTopOf="parent"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            android:layout_alignParentTop="true"
-            android:layout_alignRight="@+id/Points"
-            android:layout_alignEnd="@+id/Points"
-            android:layout_marginRight="45dp"
-            android:layout_marginEnd="45dp" />
+            android:gravity="center"
+            app:layout_constraintRight_toLeftOf="@+id/Points"
+            android:layout_marginRight="8dp"
+            app:layout_constraintHorizontal_bias="0.25" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/Points"
-            android:layout_width="wrap_content"
+            android:layout_width="23dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:text="12"
-            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
-
-        <TextView
-            android:id="@+id/Played"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_toLeftOf="@+id/GD"
-            android:layout_toStartOf="@+id/GD"
-            android:text="9"
-            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
-    </RelativeLayout>
+            android:layout_marginTop="-4dp"
+            android:text="10"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="4dp"
+            app:layout_constraintRight_toRightOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

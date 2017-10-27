@@ -57,7 +57,7 @@ public class CustomListviewTable extends BaseAdapter {
 
         View rowView=inflater.inflate(R.layout.textviewcustomedtable, null);
 
-        TextView number = (TextView) rowView.findViewById(R.id.Number);
+        TextView number = (TextView) rowView.findViewById(R.id.Position);
         TextView teamname = (TextView) rowView.findViewById(R.id.TeamName);
         TextView played = (TextView) rowView.findViewById(R.id.Played);
         TextView gd = (TextView) rowView.findViewById(R.id.GD);
