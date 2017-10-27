@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_dark">
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:text="TABLE:  Süper Lig"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"

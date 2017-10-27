@@ -24,6 +24,20 @@ public class bar3 extends android.support.v4.app.Fragment {
     ArrayAdapter<String> listAdapter;
     ListView playerlistView;
 
+    private String[] playersName = {"Cédric Carrasso", "İsmail Çipe", "Eray İşcan", "Fernando Muslera", "Ahmet Şen", "Serdar Aziz", "Hakan Balta", "Ahmet Çalık", "Tarik Çamdal", "Jason Denayer", "Koray Günter"  , "Iasmin Latovlevici", "Martin Linnes"      , "Maicon Brazil"       , "Mariano Brazil"       ,
+            "Atalay Babacan"    , "Emrah Başsan"    , "Younès Belhanda"       , "Tolga Ciğerci"        , "Nigel de Jong"     , "Ryan Donk"             , "Sofiane Féghouli"     , "Fernando"           , "Recep Gül"         ,
+            "Umut Gündoğan"  , "Gökay Güney"     , "Selçuk İnan"     , "Papa N'Diaye"	   , "Yasin Öztekin"     , "Garry Rodrigues"   , "Eren Derdiyok", "Bafétimbi Gomis"   , "Sinan Gümüş"        ,
+            "Igor Tudor"};
+
+    private Integer[] playerImage = {R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4, R.drawable.a5, R.drawable.a6, R.drawable.a7, R.drawable.a8, R.drawable.a9, R.drawable.a10, R.drawable.a11, R.drawable.a12, R.drawable.a13, R.drawable.a14, R.drawable.a15,
+            R.drawable.a16, R.drawable.a17, R.drawable.a18, R.drawable.a19, R.drawable.a20, R.drawable.a21, R.drawable.a22, R.drawable.a23, R.drawable.a24, R.drawable.a25, R.drawable.a26, R.drawable.a27,
+            R.drawable.a28, R.drawable.a29, R.drawable.a30, R.drawable.a31, R.drawable.a32, R.drawable.a33, R.drawable.a34};
+
+    private String[] playerPosition={"Goalkeeper", "Goalkeeper", "Goalkeeper", "Goalkeeper", "Goalkeeper", "Defender", "Defender", "Defender", "Defender", "Defender", "Defender", "Defender", "Defender", "Defender", "Defender",
+            "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder",
+            "Forward", "Forward", "Forward", "Manager"};
+
+
     String[] playersData = {
 
             "Cédric Carrasso\nGoalkeeper",
@@ -73,14 +87,15 @@ public class bar3 extends android.support.v4.app.Fragment {
 
         List<String> playersList = Arrays.asList(playersData);            // sos απο πινακα σε λιστα                   !!!
 
-        listAdapter =
-                new ArrayAdapter<String>
-                        (this.getContext(),R.layout.textviewcustomedplayers, R.id.list_item_players_textview,playersList);
+//        listAdapter =
+//                new ArrayAdapter<String>
+//                        (this.getContext(),R.layout.textviewcustomedplayers, R.id.list_item_players_textview,playersList);
         //(σε ποιο activity ειμαστε, το layout που χρησιμοποιουμε,το id του textview που θελουμε να γινουν τα αντικειμενα, την λιστα)   !!!
         //σκοπος ειναι να κανει τα τα αντικειμενα της λιστας, TextView
 
         playerlistView = (ListView) view.findViewById(R.id.listview_players);
-        playerlistView.setAdapter(listAdapter);
+        CustomListviewPlayers customListviewPlayers = new CustomListviewPlayers(this.getActivity(),playersName,playerPosition,playerImage);
+        playerlistView.setAdapter(customListviewPlayers);
         //βαζει τα textview του adapter στην λιστα μας
 
 

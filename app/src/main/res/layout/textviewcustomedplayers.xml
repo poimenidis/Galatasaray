@@ -1,11 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/list_item_players_textview"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:textStyle="bold"
-    android:textAppearance="@style/TextAppearance.AppCompat.Medium">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:weightSum="1">
 
-</TextView>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/holo_orange_dark"
+        android:padding="15dp">
+
+
+        <TextView
+            android:id="@+id/Textplayers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="52dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/imageplayer"
+            android:layout_toRightOf="@+id/imageplayer"
+            android:text="Goalkeeper"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            app:layout_constraintLeft_toRightOf="@+id/imageplayer"
+            app:layout_constraintTop_toBottomOf="@+id/textviewposition" />
+
+        <ImageView
+            android:id="@+id/imageplayer"
+            android:layout_width="54dp"
+            android:layout_height="67dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="-3dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/a1" />
+
+        <TextView
+            android:id="@+id/textviewposition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageplayer"
+            android:layout_alignLeft="@+id/imageplayer"
+            android:layout_alignStart="@+id/Textplayers"
+            android:layout_marginLeft="43dp"
+            android:layout_marginTop="4dp"
+            android:text="makismakis"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            app:layout_constraintLeft_toRightOf="@+id/imageplayer"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
