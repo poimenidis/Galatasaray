@@ -37,11 +37,7 @@ public class bar2 extends android.support.v4.app.Fragment {
     private String[] d1 = {
             "Mon ",
             "Tue ",
-            "Wed",
-            "Thurs",
-            "Fri",
-            "Sat",
-            "Sun"         };
+            "Wed"};
 
 
     public bar2() {
@@ -79,12 +75,6 @@ public class bar2 extends android.support.v4.app.Fragment {
         List<String> Data4 = new ArrayList<>(Arrays.asList(d1));
         List<String> Data5 = new ArrayList<>(Arrays.asList(d1));
 
-//        tableListAdapter =
-//                new ArrayAdapter<>(
-//                        getActivity(),                ////////  1
-//                        R.layout.textviewcustomedtable,
-//                        R.id.textTable,
-//                        dummyList);
 
         customListviewTable = new CustomListviewTable
                 (this.getActivity(),Data1,Data2,Data3,Data4,  Data5);
@@ -130,7 +120,7 @@ public class bar2 extends android.support.v4.app.Fragment {
 
                 }
                 customListviewTable.setDatas(data1,data2,data3,data4,data5);
-                listTable.setAdapter(customListviewTable);
+                customListviewTable.notifyDataSetChanged();
             }
             swip.setRefreshing(false);
         }
