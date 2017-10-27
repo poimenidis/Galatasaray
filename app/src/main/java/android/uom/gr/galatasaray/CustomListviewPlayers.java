@@ -21,7 +21,6 @@ public class CustomListviewPlayers extends ArrayAdapter<String> {
 
     public CustomListviewPlayers(Activity context, String[] itemname, String[]imgid,Integer[] data3) {
         super(context, R.layout.textviewcustomedplayers, itemname);
-        // TODO Auto-generated constructor stub
 
         this.context=context;
         this.data1 =itemname;

@@ -22,7 +22,6 @@ public class CustomListviewMatches extends ArrayAdapter<String> {
 
     public CustomListviewMatches(Activity context, List<String> itemname, List<String> imgid,List<String> data3) {
         super(context, R.layout.textviewcustomematches, itemname);
-        // TODO Auto-generated constructor stub
 
         this.context=context;
         this.data1 =itemname;
