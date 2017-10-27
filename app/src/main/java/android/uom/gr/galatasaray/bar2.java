@@ -31,16 +31,18 @@ public class bar2 extends android.support.v4.app.Fragment {
     ListView listTable;
     SwipeRefreshLayout swip;
     String key="dffbf01eecc3cef8a8dab1e3d05b720f9d2335be742cf048b86161544d4f91b6";
+    CustomListviewTable customListviewTable;
 
 
-    private String[] data = {
-            "Mon 6/23 - Sunny - 31/17",
-            "Tue 6/24 - Foggy - 21/8",
-            "Wed 6/25 - Cloudy - 22/17",
-            "Thurs 6/26 - Rainy - 18/11",
-            "Fri 6/27 - Foggy - 21/10",
-            "Sat 6/28 - Error! - 23/18",
-            "Sun 6/29 - Sunny - 20/7"         };
+    private String[] d1 = {
+            "Mon ",
+            "Tue ",
+            "Wed",
+            "Thurs",
+            "Fri",
+            "Sat",
+            "Sun"         };
+
 
     public bar2() {
     }
@@ -71,20 +73,27 @@ public class bar2 extends android.support.v4.app.Fragment {
             }
         });
 
-        List<String> dummyList = new ArrayList<>(Arrays.asList(data));
+        List<String> Data1 = new ArrayList<>(Arrays.asList(d1));
+        List<String> Data2 = new ArrayList<>(Arrays.asList(d1));
+        List<String> Data3 = new ArrayList<>(Arrays.asList(d1));
+        List<String> Data4 = new ArrayList<>(Arrays.asList(d1));
+        List<String> Data5 = new ArrayList<>(Arrays.asList(d1));
 
-        tableListAdapter =
-                new ArrayAdapter<>(
-                        getActivity(),                ////////  1
-                        R.layout.textviewcustomedtable,
-                        R.id.textTable,
-                        dummyList);
+//        tableListAdapter =
+//                new ArrayAdapter<>(
+//                        getActivity(),                ////////  1
+//                        R.layout.textviewcustomedtable,
+//                        R.id.textTable,
+//                        dummyList);
+
+        customListviewTable = new CustomListviewTable
+                (this.getActivity(),Data1,Data2,Data3,Data4,  Data5);
 
         listTable = (ListView) view.findViewById(R.id.listTable);
-        listTable.setAdapter(tableListAdapter);
+        listTable.setAdapter(customListviewTable);
 
-        FetchTableTask task = new FetchTableTask();
-        task.execute();
+//        FetchTableTask task = new FetchTableTask();
+//        task.execute();
 
 
         return view;
@@ -100,12 +109,28 @@ public class bar2 extends android.support.v4.app.Fragment {
 
         @Override
         protected void onPostExecute(String[] strings) {
+            List<String> data1 = new ArrayList<>();
+            List<String> data2 = new ArrayList<>();
+            List<String> data3 = new ArrayList<>();
+            List<String> data4 = new ArrayList<>();
+            List<String> data5 = new ArrayList<>();
+
             swip.setRefreshing(true);
             if(strings != null){
-                tableListAdapter.clear();
+
                 for(String table : strings){
-                    tableListAdapter.add(table);
+//                    tableListAdapter.add(table);
+                    String[] splited = table.split("\\s+");
+                    data1.add(splited[0]);
+                    data2.add(splited[1]);
+                    data3.add(splited[2]);
+                    data4.add(splited[3]);
+                    data5.add(splited[4]);
+                    Log.i("pp ",splited[0]);
+
                 }
+                customListviewTable.setDatas(data1,data2,data3,data4,data5);
+                listTable.setAdapter(customListviewTable);
             }
             swip.setRefreshing(false);
         }

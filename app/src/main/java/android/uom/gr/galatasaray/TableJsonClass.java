@@ -78,12 +78,7 @@ public class TableJsonClass {
         });
 
         for(Table t : tt){
-            String finall;
-            finall=t.getPosition()+"    "+t.getName()+"                  ";
-            finall=finall.substring(0,30)+"P:  "+t.getPlayed()+"                                  ";
-            finall=finall.substring(0,45)+"GD:  "+t.getTermata()+"                                      ";
-            finall=finall.substring(0,60)+"Pts:  "+t.getLeaguePoints();
-            results.add(finall);
+            results.add(t.getPosition()+" "+t.getName()+" "+t.getPlayed()+" "+t.getTermata()+" "+t.getLeaguePoints());
         }
 
 
@@ -130,9 +125,8 @@ public class TableJsonClass {
         }
 
         public void setName(String name) {
-            if(name.length() > 13)
-                name = name.substring(0,12) + "...";
-            this.name = name;
+            String[] splited = name.split("\\s+");
+            this.name = splited[0];
         }
 
         public void setPosition(int position) {
