@@ -79,5 +79,6 @@ public class CustomListviewTable extends BaseAdapter {
         this.data3 = data3;
         this.data4=data4;
         this.data5 = data5;
+        notifyDataSetChanged();
     }
 }

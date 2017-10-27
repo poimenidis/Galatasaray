@@ -107,7 +107,6 @@ public class bar2 extends android.support.v4.app.Fragment {
 
             swip.setRefreshing(true);
             if(strings != null){
-
                 for(String table : strings){
 //                    tableListAdapter.add(table);
                     String[] splited = table.split("\\s+");
@@ -120,7 +119,6 @@ public class bar2 extends android.support.v4.app.Fragment {
 
                 }
                 customListviewTable.setDatas(data1,data2,data3,data4,data5);
-                customListviewTable.notifyDataSetChanged();
             }
             swip.setRefreshing(false);
         }
