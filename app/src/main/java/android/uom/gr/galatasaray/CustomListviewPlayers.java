@@ -18,6 +18,15 @@ public class CustomListviewPlayers extends ArrayAdapter<String> {
     private String[] data1;
     private String[] data2;
     private Integer[] data3;
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_ROW = 1;
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+
 
     public CustomListviewPlayers(Activity context, String[] itemname, String[]imgid,Integer[] data3) {
         super(context, R.layout.textviewcustomedplayers, itemname);

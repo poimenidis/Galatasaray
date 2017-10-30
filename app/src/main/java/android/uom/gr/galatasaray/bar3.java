@@ -11,9 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Created by Κώστας Ποιμενίδης on 11/10/2017.
  */
@@ -23,6 +20,7 @@ public class bar3 extends android.support.v4.app.Fragment {
     private TextView TextVieBar3;
     ArrayAdapter<String> listAdapter;
     ListView playerlistView;
+    CustomListviewPlayers customListviewPlayers;
 
     private String[] playersName = {"Cédric Carrasso", "İsmail Çipe", "Eray İşcan", "Fernando Muslera", "Ahmet Şen", "Serdar Aziz", "Hakan Balta", "Ahmet Çalık", "Tarik Çamdal", "Jason Denayer", "Koray Günter"  , "Iasmin Latovlevici", "Martin Linnes"      , "Maicon Brazil"       , "Mariano Brazil"       ,
             "Atalay Babacan"    , "Emrah Başsan"    , "Younès Belhanda"       , "Tolga Ciğerci"        , "Nigel de Jong"     , "Ryan Donk"             , "Sofiane Féghouli"     , "Fernando"           , "Recep Gül"         ,
@@ -38,54 +36,14 @@ public class bar3 extends android.support.v4.app.Fragment {
             "Forward", "Forward", "Forward", "Manager"};
 
 
-    String[] playersData = {
 
-            "Cédric Carrasso\nGoalkeeper",
-            "İsmail Çipe\nGoalkeeper",
-            "Eray İşcan\nGoalkeeper",
-            "Fernando Muslera\nGoalkeeper",
-            "Ahmet Şen\nGoalkeeper",
-
-            "Serdar Aziz\nDefender",
-            "Hakan Balta\nDefender",
-            "Ahmet Çalık\nDefender",
-            "Tarik Çamdal\nDefender",
-            "Jason Denayer\nDefender",
-            "Koray Günter\nDefender",
-            "Iasmin Latovlevici\nDefender",
-            "Martin Linnes\nDefender",
-            "Maicon Brazil\nDefender",
-            "Mariano Brazil\nDefender",
-
-            "Atalay Babacan\nMidfielder",
-            "Emrah Başsan\nMidfielder",
-            "Younès Belhanda\nMidfielder",
-            "Tolga Ciğerci\nMidfielder",
-            "Nigel de Jong\nMidfielder",
-            "Ryan Donk\nMidfielder",
-            "Sofiane Féghouli\nMidfielder",
-            "Fernando\nMidfielder",
-            "Recep Gül\nMidfielder",
-            "Umut Gündoğan\nMidfielder",
-            "Gökay Güney\nMidfielder",
-            "Selçuk İnan\nMidfielder",
-            "Papa N'Diaye\nMidfielder",
-            "Yasin Öztekin\nMidfielder",
-            "Garry Rodrigues \nMidfielder",
-
-            "Eren Derdiyok\nForward",
-            "Bafétimbi Gomis\nForward",
-            "Sinan Gümüş\nForward",
-
-            "Igor Tudor\nManager"
-    };
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bar3,container,false);
 
-        List<String> playersList = Arrays.asList(playersData);            // sos απο πινακα σε λιστα                   !!!
+
 
 //        listAdapter =
 //                new ArrayAdapter<String>
@@ -94,7 +52,7 @@ public class bar3 extends android.support.v4.app.Fragment {
         //σκοπος ειναι να κανει τα τα αντικειμενα της λιστας, TextView
 
         playerlistView = (ListView) view.findViewById(R.id.listview_players);
-        CustomListviewPlayers customListviewPlayers = new CustomListviewPlayers(this.getActivity(),playersName,playerPosition,playerImage);
+        customListviewPlayers = new CustomListviewPlayers(this.getActivity(),playersName,playerPosition,playerImage);
         playerlistView.setAdapter(customListviewPlayers);
         //βαζει τα textview του adapter στην λιστα μας
 

@@ -31,41 +31,39 @@
         <TextView
             android:id="@+id/TeamName"
             android:layout_width="110dp"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="-5dp"
             android:text="Galatasaray"
-            app:layout_constraintLeft_toRightOf="@+id/Position"
-            app:layout_constraintTop_toTopOf="parent"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            />
+            app:layout_constraintLeft_toRightOf="@+id/Position"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/Played"
-            android:layout_width="wrap_content"
+            android:layout_width="21dp"
             android:layout_height="0dp"
             android:layout_marginLeft="41dp"
             android:layout_marginTop="-4dp"
+            android:gravity="center"
             android:text="10"
-            app:layout_constraintLeft_toRightOf="@+id/TeamName"
-            app:layout_constraintTop_toTopOf="parent"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            android:gravity="center"/>
+            app:layout_constraintLeft_toRightOf="@+id/TeamName"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/GD"
-            android:layout_width="wrap_content"
+            android:layout_width="22dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="36dp"
-            android:layout_marginTop="-4dp"
-            android:text="10"
-            app:layout_constraintLeft_toRightOf="@+id/Played"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            android:gravity="center"
-            app:layout_constraintRight_toLeftOf="@+id/Points"
             android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.25" />
+            android:gravity="center"
+            android:text="10"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            app:layout_constraintHorizontal_bias="0.047"
+            app:layout_constraintLeft_toRightOf="@+id/Played"
+            app:layout_constraintRight_toLeftOf="@+id/Points"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:gravity="center"

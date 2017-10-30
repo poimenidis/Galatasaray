@@ -22,11 +22,11 @@ public class CustomListviewMatches extends BaseAdapter {
     private List<String> data3;
     private LayoutInflater inflater;
 
-    public CustomListviewMatches(Activity context, List<String> itemname, List<String> imgid,List<String> data3) {
+    public CustomListviewMatches(Activity context, List<String> data1, List<String> data2,List<String> data3) {
 
         this.context=context;
-        this.data1 =itemname;
-        this.data2=imgid;
+        this.data1 =data1;
+        this.data2=data2;
         this.data3 = data3;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -67,6 +67,7 @@ public class CustomListviewMatches extends BaseAdapter {
         this.data1=data1;
         this.data2=data2;
         this.data3 = data3;
+        notifyDataSetChanged();
     }
 }
 

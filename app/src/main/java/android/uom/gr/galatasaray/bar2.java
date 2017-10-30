@@ -109,13 +109,13 @@ public class bar2 extends android.support.v4.app.Fragment {
             if(strings != null){
                 for(String table : strings){
 //                    tableListAdapter.add(table);
-                    String[] splited = table.split("\\s+");
+                    String[] splited = table.split("#");
                     data1.add(splited[0]);
                     data2.add(splited[1]);
                     data3.add(splited[2]);
                     data4.add(splited[3]);
                     data5.add(splited[4]);
-                    Log.i("pp ",splited[0]);
+                    Log.i("pp ",splited[1]);
 
                 }
                 customListviewTable.setDatas(data1,data2,data3,data4,data5);

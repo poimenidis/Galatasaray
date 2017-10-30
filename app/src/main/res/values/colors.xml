@@ -2,10 +2,11 @@
 <resources>
     <color name="colorPrimary">#921</color>
     <color name="colorPrimaryDark">#921</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="refresh1">#FF4081</color>
 
     <color name="refresh">#008000</color>
-    <color name="refresh1">#008080</color>
     <color name="refresh2">#800080</color>
+
+    <color name="match">#E66C2C</color>
 
 </resources>

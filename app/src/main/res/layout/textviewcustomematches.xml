@@ -1,46 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_dark"
+    android:background="@color/colorPrimaryDark"
     android:weightSum="1">
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:background="@android:color/background_light"
+        android:background="@android:color/holo_orange_dark"
         android:padding="15dp">
 
         <TextView
             android:id="@+id/score"
-            android:layout_width="wrap_content"
+            android:layout_width="94dp"
             android:layout_height="wrap_content"
-            android:text="12:40"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="12:40"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/team1"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toEndOf="@+id/team2"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/team2"
-            android:layout_width="wrap_content"
+            android:id="@+id/team1"
+            android:layout_width="98dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="52dp"
-            android:layout_marginRight="52dp"
-            android:text="TextView" />
+            android:layout_marginStart="4dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="4dp" />
 
         <TextView
-            android:id="@+id/team1"
-            android:layout_width="wrap_content"
+            android:id="@+id/team2"
+            android:layout_width="103dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="45dp"
-            android:layout_marginStart="45dp"
-            android:text="TextView"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-    </RelativeLayout>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>
