@@ -41,21 +41,11 @@ public class bar1 extends android.support.v4.app.Fragment {
 
 
     private String[] d1 = {
-            "Mon ",
-            "Tue ",
-            "Wed",
-            "Thurs",
-            "Fri",
-            "Sat",
-            "Sun"         };
-    private String[] d0 = {
-            "saka ",
-            "Tue ",
-            "Wed",
-            "kaka",
-            "Fri",
-            "Sat",
-            "Sun"         };
+            null    };
+
+
+
+
 
 
     @Nullable
@@ -69,8 +59,7 @@ public class bar1 extends android.support.v4.app.Fragment {
         swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                    FetchMatchTask task = new FetchMatchTask();
-                task.execute();
+                    updateMatches();
             }
         });
 
@@ -114,18 +103,29 @@ public class bar1 extends android.support.v4.app.Fragment {
         List<String> data1 = new ArrayList<>(Arrays.asList(d1));
         List<String> data2 = new ArrayList<>(Arrays.asList(d1));
         List<String> data3 = new ArrayList<>(Arrays.asList(d1));
-        List<String> data0 = new ArrayList<>(Arrays.asList(d0));
+        List<String> data0 = new ArrayList<>(Arrays.asList(d1));
 
         listmatches = (ListView) view.findViewById(R.id.listMatches);
-        customListviewMatches=new CustomListviewMatches(this.getActivity(),data1,data2,data3);
+        customListviewMatches=new CustomListviewMatches(this.getActivity(),data1,data2,data3,data0);
         listmatches.setAdapter(customListviewMatches);
 
 
-        customListviewMatches.setDatas(data0,data2,data3);
 
 
         return view;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        updateMatches();
+    }
+
+    private void updateMatches() {
+        FetchMatchTask task = new FetchMatchTask();
+        task.execute();
+    }
+
 
     public class FetchMatchTask   extends AsyncTask<String, Void, String[]> {
 
@@ -139,6 +139,7 @@ public class bar1 extends android.support.v4.app.Fragment {
             List<String> data1 = new ArrayList<>();
             List<String> data2 = new ArrayList<>();
             List<String> data3 = new ArrayList<>();
+            List<String> data4 = new ArrayList<>();
 
             swip.setRefreshing(true);
             if(strings != null){
@@ -148,10 +149,11 @@ public class bar1 extends android.support.v4.app.Fragment {
                     data1.add(splited[0]);
                     data2.add(splited[1]);
                     data3.add(splited[2]);
-                    Log.i("pp ",splited[0]);
+                    data4.add(splited[3]);
+                    Log.i("pp ",splited[3]);
 
                 }
-                customListviewMatches.setDatas(data1,data2,data3);
+                customListviewMatches.setDatas(data1,data2,data3,data4);
             }
             swip.setRefreshing(false);
         }

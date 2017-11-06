@@ -20,14 +20,17 @@ public class CustomListviewMatches extends BaseAdapter {
     private List<String> data1;
     private List<String> data2;
     private List<String> data3;
+    private List<String> data4;
+
     private LayoutInflater inflater;
 
-    public CustomListviewMatches(Activity context, List<String> data1, List<String> data2,List<String> data3) {
+    public CustomListviewMatches(Activity context, List<String> data1, List<String> data2,List<String> data3, List<String> data4) {
 
         this.context=context;
         this.data1 =data1;
         this.data2=data2;
         this.data3 = data3;
+        this.data4=data4;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -59,16 +62,24 @@ public class CustomListviewMatches extends BaseAdapter {
         score.setText(data2.get(position));
         team2.setText(data3.get(position));
 
+        if(!"FT".equals(data4.get(position))){
+
+            score.setBackgroundResource(R.color.matches);
+        }
+
         return rowView;
 
     };
 
-    public void setDatas(List<String> data1,List<String> data2,List<String> data3) {
+    public void setDatas(List<String> data1,List<String> data2,List<String> data3,List<String> data4) {
         this.data1=data1;
         this.data2=data2;
         this.data3 = data3;
+        this.data4=data4;
         notifyDataSetChanged();
     }
+
+
 }
 
 

@@ -30,7 +30,7 @@ public class MatchJsonClass {
                 String match_hometeam_score;
                 String match_awayteam_name;
                 String match_awayteam_score;
-                String match_live;
+                String match_status;
                 String match_date;
 
 
@@ -48,17 +48,42 @@ public class MatchJsonClass {
 
 
                 match_date = Noumero.getString("match_date");
+                String[] split = match_date.split("-");
+                match_date=split[2]+"/"+split[1];
+
+
+
                 match_time = Noumero.getString("match_time");
 
-                match_live = Noumero.getString("match_live");
+//
+//                String[] splited = match_time.split(":");
+//                Integer hour = Integer.parseInt(splited[0]);
+//                TimeZone tz = TimeZone.getDefault();
+//                String ss =tz.getDisplayName(false, TimeZone.SHORT);
+//                String[] splited2 = ss.split("T");
+//                String[] splited3 = splited2[1].split(":");
+//                Integer hourplus = Integer.parseInt(splited3[0]);
+//                hour+=hourplus-1;
+//                splited[0]=hour.toString();
 
 
-                if(match_live.equals("0"))
-                results.add(match_hometeam_name+"#"+match_date+"\n"+match_time+"#"+match_awayteam_name);
+
+                match_status = Noumero.getString("match_status");
+
+
+                if(match_status.equals(""))
+                results.add(match_hometeam_name+"#"+match_date+"\n"+match_time+"#"+match_awayteam_name+"#"+" ");
+                else if(!"FT".equals(match_status))
+                        results.add(match_hometeam_name+"#"+"Today"+"\n"+match_time+"#"+match_awayteam_name+"#"+" ");
                 else
-                    results.add(match_hometeam_name+"#"+match_hometeam_score+":"+match_awayteam_score+"#"+match_awayteam_name);
+                    if("FT".equals(match_status))
+                    results.add(match_hometeam_name + "#" + match_hometeam_score + ":" + match_awayteam_score + "#" + match_awayteam_name+"#"+"FT");
+                    else
+                        results.add(match_hometeam_name + "#" + match_hometeam_score + ":" + match_awayteam_score + "#" + match_awayteam_name+"#"+" ");
 
             }
+
+
 
 
         } catch (JSONException e) {

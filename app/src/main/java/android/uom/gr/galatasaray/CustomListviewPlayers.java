@@ -1,10 +1,11 @@
 package android.uom.gr.galatasaray;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,7 +13,7 @@ import android.widget.TextView;
  * Created by Κώστας Ποιμενίδης on 27/10/2017.
  */
 
-public class CustomListviewPlayers extends ArrayAdapter<String> {
+public class CustomListviewPlayers extends BaseAdapter {
 
     private final Activity context;
     private String[] data1;
@@ -20,36 +21,60 @@ public class CustomListviewPlayers extends ArrayAdapter<String> {
     private Integer[] data3;
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ROW = 1;
+    private LayoutInflater inflater;
 
-    @Override
-    public int getViewTypeCount() {
-        return 2;
-    }
+
 
 
 
     public CustomListviewPlayers(Activity context, String[] itemname, String[]imgid,Integer[] data3) {
-        super(context, R.layout.textviewcustomedplayers, itemname);
+
 
         this.context=context;
         this.data1 =itemname;
         this.data2=imgid;
         this.data3 = data3;
+
+        inflater = ( LayoutInflater )context.
+                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    @Override
+    public int getCount() {
+        return data1.length;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return position;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.textviewcustomedplayers, null,true);
 
-        TextView teame1 = (TextView) rowView.findViewById(R.id.textviewposition);
-        TextView score = (TextView) rowView.findViewById(R.id.Textplayers);
-        ImageView team2 = (ImageView) rowView.findViewById(R.id.imageplayer);
+        ViewHolder holder ;
 
-        teame1.setText(data1[position]);
-        score.setText(data2[position]);
-        team2.setImageResource(data3[position]);
 
-        return rowView;
+        if (view == null) {
+            view = inflater.inflate(R.layout.textviewcustomedplayers, null,true);
+            holder = new ViewHolder(view);
+            view.setTag(holder);
+        }
+        else {
+            holder = (ViewHolder) view.getTag();
+        }
+
+
+
+        holder.name.setText(data1[position]);
+        holder.pos.setText(data2[position]);
+        holder.img.setImageResource(data3[position]);
+
+        return view;
 
     };
 
@@ -57,5 +82,18 @@ public class CustomListviewPlayers extends ArrayAdapter<String> {
         this.data1=data1;
         this.data2=data2;
         this.data3 = data3;
+    }
+
+
+    public static class ViewHolder {
+        public final TextView name;
+        public final TextView pos;
+        public final ImageView img;
+
+        public ViewHolder(View view) {
+            pos = (TextView) view.findViewById(R.id.Textplayers);
+            name = (TextView) view.findViewById(R.id.textviewposition);
+            img = (ImageView) view.findViewById(R.id.imageplayer);
+        }
     }
 }

@@ -29,7 +29,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="android.uom.gr.galatasaray.MainActivity" />
         </activity>
-        <activity android:name=".splash">
+        <activity
+            android:name=".splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

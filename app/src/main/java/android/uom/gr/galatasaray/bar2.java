@@ -35,12 +35,21 @@ public class bar2 extends android.support.v4.app.Fragment {
 
 
     private String[] d1 = {
-            "Mon ",
-            "Tue ",
-            "Wed"};
+            null};
 
 
     public bar2() {
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        updateTable();
+    }
+
+    private void updateTable() {
+        FetchTableTask task = new FetchTableTask();
+        task.execute();
     }
 
     
@@ -57,8 +66,7 @@ public class bar2 extends android.support.v4.app.Fragment {
             @Override
             public void onRefresh() {
 
-                FetchTableTask task = new FetchTableTask();
-                task.execute();
+                updateTable();
 
 //                Handler handler = new Handler();
 //                handler.postDelayed(new Runnable() {
@@ -122,6 +130,8 @@ public class bar2 extends android.support.v4.app.Fragment {
             }
             swip.setRefreshing(false);
         }
+
+
 
         private String[] fetchTableData() {
 
