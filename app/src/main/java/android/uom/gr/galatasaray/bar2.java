@@ -124,7 +124,6 @@ public class bar2 extends android.support.v4.app.Fragment {
                     data5.add(table.getLeaguePoints());
 
 
-                    Log.i("skata", table.getName());
 
                 }
                 customListviewTable.setDatas(data1,data2,data3,data4,data5);
