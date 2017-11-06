@@ -45,6 +45,21 @@
             android:layout_centerInParent="true"
             android:scaleType="fitXY"/>
 
+        <ImageView
+            android:id="@+id/imagenum"
+            android:layout_width="83dp"
+            android:layout_height="72dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="4dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/number"
+            android:layout_marginRight="4dp" />
+
         <TextView
             android:id="@+id/textviewposition"
             android:layout_width="wrap_content"
@@ -58,6 +73,24 @@
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
             app:layout_constraintLeft_toRightOf="@+id/imageplayer"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/NNumber"
+            android:gravity="center"
+            android:layout_width="33dp"
+            android:layout_height="29dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/holo_orange_light"
+            android:text="65"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/imagenum"
+            app:layout_constraintEnd_toEndOf="@+id/imagenum"
+            app:layout_constraintStart_toStartOf="@+id/imagenum"
+            app:layout_constraintTop_toTopOf="@+id/imagenum"
+            app:layout_constraintVertical_bias="0.074" />
 
     </android.support.constraint.ConstraintLayout>
 

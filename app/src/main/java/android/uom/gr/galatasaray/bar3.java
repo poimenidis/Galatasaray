@@ -35,6 +35,10 @@ public class bar3 extends android.support.v4.app.Fragment {
             "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder",
             "Forward", "Forward", "Forward", "Manager"};
 
+    private Integer[] playerNumber={
+            16, 13, 67, 1, 12, 4, 22, 5, 21, 64, 28, 33, 14, 3, 2, 36, 17, 10, 6, 34, 15, 89, 25, 37, 90, 88, 8, 20, 7, 24, 9, 18, 11, 0};
+
+
 
 
 
@@ -52,9 +56,11 @@ public class bar3 extends android.support.v4.app.Fragment {
         //σκοπος ειναι να κανει τα τα αντικειμενα της λιστας, TextView
 
         playerlistView = (ListView) view.findViewById(R.id.listview_players);
-        customListviewPlayers = new CustomListviewPlayers(this.getActivity(),playersName,playerPosition,playerImage);
+        customListviewPlayers = new CustomListviewPlayers(this.getActivity(),playersName,playerPosition,playerImage,playerNumber);
         playerlistView.setAdapter(customListviewPlayers);
-        //βαζει τα textview του adapter στην λιστα μας
+
+
+
 
 
         playerlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
