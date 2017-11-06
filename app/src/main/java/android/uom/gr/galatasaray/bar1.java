@@ -157,7 +157,6 @@ public class bar1 extends android.support.v4.app.Fragment {
 
                     data3.add(table.getAwayteam());
                     data4.add(table.getStatus());
-                    Log.i("skata", table.getStatus());
 
                 }
                 customListviewMatches.setDatas(data1,data2,data3,data4);

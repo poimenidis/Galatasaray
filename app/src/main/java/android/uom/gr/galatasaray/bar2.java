@@ -98,15 +98,15 @@ public class bar2 extends android.support.v4.app.Fragment {
     }
 
 
-    public class FetchTableTask   extends AsyncTask<String, Void, String[]> {
+    public class FetchTableTask   extends AsyncTask<String, Void, List<TableJsonClass.Table>> {
 
         @Override
-        protected String[] doInBackground(String... params) {
+        protected List<TableJsonClass.Table> doInBackground(String... params) {
             return fetchTableData();
         }
 
         @Override
-        protected void onPostExecute(String[] strings) {
+        protected void onPostExecute(List<TableJsonClass.Table> strings) {
             List<String> data1 = new ArrayList<>();
             List<String> data2 = new ArrayList<>();
             List<String> data3 = new ArrayList<>();
@@ -115,15 +115,16 @@ public class bar2 extends android.support.v4.app.Fragment {
 
             swip.setRefreshing(true);
             if(strings != null){
-                for(String table : strings){
+                for(TableJsonClass.Table table : strings){
 //                    tableListAdapter.add(table);
-                    String[] splited = table.split("#");
-                    data1.add(splited[0]);
-                    data2.add(splited[1]);
-                    data3.add(splited[2]);
-                    data4.add(splited[3]);
-                    data5.add(splited[4]);
-                    Log.i("pp ",splited[1]);
+                    data1.add(Integer.toString(table.getPosition()));
+                    data2.add(table.getName());
+                    data3.add(table.getPlayed());
+                    data4.add(Integer.toString(table.getTermata()));
+                    data5.add(table.getLeaguePoints());
+
+
+                    Log.i("skata", table.getName());
 
                 }
                 customListviewTable.setDatas(data1,data2,data3,data4,data5);
@@ -133,7 +134,7 @@ public class bar2 extends android.support.v4.app.Fragment {
 
 
 
-        private String[] fetchTableData() {
+        private List<TableJsonClass.Table> fetchTableData() {
 
             // These two need to be declared outside the try/catch
             // so that they can be closed in the finally block.
@@ -178,11 +179,10 @@ public class bar2 extends android.support.v4.app.Fragment {
 
                 Log.i("TABLE: ",tableJsonStr);
 
-                List<String> tableList =
+                List<TableJsonClass.Table> tableList =
                         TableJsonClass.getTableFromJson(tableJsonStr, 18);
 
-                String[] tAr = new String[18];
-                return tableList.toArray(tAr);
+                return tableList;
 
             } catch (IOException e) {
                 Log.e("ForecastFragment", "Error ", e);

@@ -18,10 +18,9 @@ import java.util.List;
 public class TableJsonClass {
 
 
-    public static List<String> getTableFromJson(String jsonString, int teams) {
-        List<String> results = new ArrayList<>();
+    public static List<Table> getTableFromJson(String jsonString, int teams) {
         List<Integer> rr = new ArrayList<>();
-        ArrayList<Table> tt = new ArrayList<>();
+        ArrayList<Table> results = new ArrayList<>();
 
         try {
             JSONArray jsonArray = new JSONArray(jsonString);//ksekiname etsi na diavazoyme JSON
@@ -59,7 +58,7 @@ public class TableJsonClass {
                 league_payed= Noumero.getString("overall_league_payed");
                 t.setPlayed(league_payed);
 
-                tt.add(t);
+                results.add(t);
 
             }
 
@@ -68,7 +67,7 @@ public class TableJsonClass {
         }
 
 
-        Collections.sort(tt, new Comparator<Table>()
+        Collections.sort(results, new Comparator<Table>()
         {
             @Override
             public int compare(Table o1, Table o2)
@@ -77,10 +76,8 @@ public class TableJsonClass {
             }
         });
 
-        for(Table t : tt){
-            results.add(t.getPosition()+"#"+t.getName()+"#"+t.getPlayed()+"#"+t.getTermata()+"#"+t.getLeaguePoints());
-        }
 
+//        results.add(t.getPosition()+"#"+t.getName()+"#"+t.getPlayed()+"#"+t.getTermata()+"#"+t.getLeaguePoints());
 
     return results;
     }
