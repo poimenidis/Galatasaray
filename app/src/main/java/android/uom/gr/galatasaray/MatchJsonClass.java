@@ -16,8 +16,8 @@ import java.util.List;
 public class MatchJsonClass {
 
 
-    public static List<String> getMatchFromJson(String jsonString, int teams) {
-        List<String> results = new ArrayList<>();
+    public static List<MatchClass> getMatchFromJson(String jsonString, int teams) {
+        List<MatchClass> results = new ArrayList<>();
 
 
         try {
@@ -32,6 +32,7 @@ public class MatchJsonClass {
                 String match_awayteam_score;
                 String match_status;
                 String match_date;
+                MatchClass mm = new MatchClass();
 
 
                 JSONObject Noumero = jsonArray.getJSONObject(i);
@@ -70,16 +71,26 @@ public class MatchJsonClass {
 
                 match_status = Noumero.getString("match_status");
 
+                mm.setAwayscore(match_awayteam_score);
+                mm.setAwayteam(match_awayteam_name);
+                mm.setDate(match_date);
+                mm.setHomescore(match_hometeam_score);
+                mm.setHometeam(match_hometeam_name);
+                mm.setStatus(match_status);
+                mm.setTime(match_time);
 
-                if(match_status.equals(""))
-                results.add(match_hometeam_name+"#"+match_date+"\n"+match_time+"#"+match_awayteam_name+"#"+" ");
-                else if(!"FT".equals(match_status))
-                        results.add(match_hometeam_name+"#"+"Today"+"\n"+match_time+"#"+match_awayteam_name+"#"+" ");
-                else
-                    if("FT".equals(match_status))
-                    results.add(match_hometeam_name + "#" + match_hometeam_score + ":" + match_awayteam_score + "#" + match_awayteam_name+"#"+"FT");
-                    else
-                        results.add(match_hometeam_name + "#" + match_hometeam_score + ":" + match_awayteam_score + "#" + match_awayteam_name+"#"+" ");
+                results.add(mm);
+
+
+//                if(match_status.equals(""))
+//                results.add(match_hometeam_name+"#"+match_date+"\n"+match_time+"#"+match_awayteam_name+"#"+" ");
+//                else if(!"FT".equals(match_status))
+//                        results.add(match_hometeam_name+"#"+"Today"+"\n"+match_time+"#"+match_awayteam_name+"#"+" ");
+//                else
+//                    if("FT".equals(match_status))
+//                    results.add(match_hometeam_name + "#" + match_hometeam_score + ":" + match_awayteam_score + "#" + match_awayteam_name+"#"+"FT");
+//                    else
+//                        results.add(match_hometeam_name + "#" + match_hometeam_score + ":" + match_awayteam_score + "#" + match_awayteam_name+"#"+" ");
 
             }
 
@@ -94,4 +105,78 @@ public class MatchJsonClass {
         return results;
 
     }
+
+    public static class MatchClass{
+
+        private String hometeam;
+        private String awayteam;
+        private String date;
+        private String time;
+        private String homescore;
+        private String awayscore;
+        private String status;
+
+        public MatchClass(){
+
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public String getAwayscore() {
+            return awayscore;
+        }
+
+        public String getAwayteam() {
+            return awayteam;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getHomescore() {
+            return homescore;
+        }
+
+        public String getHometeam() {
+            return hometeam;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setAwayscore(String awayscore) {
+            this.awayscore = awayscore;
+        }
+
+        public void setAwayteam(String awayteam) {
+            this.awayteam = awayteam;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public void setHomescore(String homescore) {
+            this.homescore = homescore;
+        }
+
+        public void setHometeam(String hometeam) {
+            this.hometeam = hometeam;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
+
+    }
+
+
 }

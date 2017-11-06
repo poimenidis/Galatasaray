@@ -127,15 +127,15 @@ public class bar1 extends android.support.v4.app.Fragment {
     }
 
 
-    public class FetchMatchTask   extends AsyncTask<String, Void, String[]> {
+    public class FetchMatchTask   extends AsyncTask<String, Void, List<MatchJsonClass.MatchClass> >{
 
         @Override
-        protected String[] doInBackground(String... params) {
+        protected List<MatchJsonClass.MatchClass> doInBackground(String... params) {
             return fetchMatchData();
         }
 
         @Override
-        protected void onPostExecute(String[] strings) {
+        protected void onPostExecute(List<MatchJsonClass.MatchClass> strings) {
             List<String> data1 = new ArrayList<>();
             List<String> data2 = new ArrayList<>();
             List<String> data3 = new ArrayList<>();
@@ -143,14 +143,21 @@ public class bar1 extends android.support.v4.app.Fragment {
 
             swip.setRefreshing(true);
             if(strings != null){
-                for(String table : strings){
+                for(MatchJsonClass.MatchClass table : strings){
 //                    tableListAdapter.add(table);
-                    String[] splited = table.split("#");
-                    data1.add(splited[0]);
-                    data2.add(splited[1]);
-                    data3.add(splited[2]);
-                    data4.add(splited[3]);
-                    Log.i("pp ",splited[3]);
+                    data1.add(table.getHometeam());
+
+                    if(table.getStatus().equals(""))
+                    data2.add(table.getDate()+"\n"+table.getTime());
+                    else if(!"FT".equals(table.getStatus()))
+                    data2.add("Today"+"\n"+table.getTime());
+                    else
+                        data2.add(table.getHomescore()+":"+table.getAwayscore());
+
+
+                    data3.add(table.getAwayteam());
+                    data4.add(table.getStatus());
+                    Log.i("skata", table.getStatus());
 
                 }
                 customListviewMatches.setDatas(data1,data2,data3,data4);
@@ -158,7 +165,7 @@ public class bar1 extends android.support.v4.app.Fragment {
             swip.setRefreshing(false);
         }
 
-        private String[] fetchMatchData() {
+        private List<MatchJsonClass.MatchClass> fetchMatchData() {
 
             // These two need to be declared outside the try/catch
             // so that they can be closed in the finally block.
@@ -206,11 +213,11 @@ public class bar1 extends android.support.v4.app.Fragment {
                         fromdate+"&to="+todate+"&league_id=376&APIkey=dffbf01eecc3cef8a8dab1e3d05b720f9d2335be742cf048b86161544d4f91b6");
                 Log.i("TABLE: ",matchJsonStr);
 
-                List<String> MatchList =
+                List<MatchJsonClass.MatchClass> MatchList =
                         MatchJsonClass.getMatchFromJson(matchJsonStr, 9);
 
-                String[] tAr = new String[9];
-                return MatchList.toArray(tAr);
+
+                return MatchList;
 
             } catch (IOException e) {
                 Log.e("ForecastFragment", "Error ", e);

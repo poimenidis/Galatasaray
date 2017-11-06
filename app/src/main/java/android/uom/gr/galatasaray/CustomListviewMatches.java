@@ -51,23 +51,30 @@ public class CustomListviewMatches extends BaseAdapter {
     }
 
     public View getView(int position, View view, ViewGroup parent) {
-        inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.textviewcustomematches, null,true);
+        ViewHolder holder ;
 
-        TextView teame1 = (TextView) rowView.findViewById(R.id.team1);
-        TextView score = (TextView) rowView.findViewById(R.id.score);
-        TextView team2 = (TextView) rowView.findViewById(R.id.team2);
 
-        teame1.setText(data1.get(position));
-        score.setText(data2.get(position));
-        team2.setText(data3.get(position));
+        if (view == null) {
+            view = inflater.inflate(R.layout.textviewcustomematches, null,true);
+            holder = new ViewHolder(view);
+            view.setTag(holder);
+        }
+        else {
+            holder = (ViewHolder) view.getTag();
+        }
+
+        holder.teame1.setText(data1.get(position));
+        holder.score.setText(data2.get(position));
+        holder.team2.setText(data3.get(position));
 
         if(!"FT".equals(data4.get(position))){
 
-            score.setBackgroundResource(R.color.matches);
+            holder.score.setBackgroundResource(R.color.matches);
         }
+        else
+            holder.score.setBackgroundResource(R.color.refresh1);
 
-        return rowView;
+        return view;
 
     };
 
@@ -77,6 +84,21 @@ public class CustomListviewMatches extends BaseAdapter {
         this.data3 = data3;
         this.data4=data4;
         notifyDataSetChanged();
+    }
+
+     class ViewHolder {
+        TextView teame1;
+        TextView score;
+        TextView team2;
+
+        public ViewHolder(View view) {
+
+            teame1 = (TextView) view.findViewById(R.id.team1);
+
+            score = (TextView) view.findViewById(R.id.score);
+
+            team2 = (TextView) view.findViewById(R.id.team2);
+        }
     }
 
 

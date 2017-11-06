@@ -55,21 +55,24 @@ public class CustomListviewTable extends BaseAdapter {
 
     public View getView(int position, View view, ViewGroup parent) {
 
-        View rowView=inflater.inflate(R.layout.textviewcustomedtable, null);
+        ViewHolder holder ;
 
-        TextView number = (TextView) rowView.findViewById(R.id.Position);
-        TextView teamname = (TextView) rowView.findViewById(R.id.TeamName);
-        TextView played = (TextView) rowView.findViewById(R.id.Played);
-        TextView gd = (TextView) rowView.findViewById(R.id.GD);
-        TextView points = (TextView) rowView.findViewById(R.id.Points);
+        if (view == null) {
+            view = inflater.inflate(R.layout.textviewcustomedtable, null,true);
+            holder = new ViewHolder(view);
+            view.setTag(holder);
+        }
+        else {
+            holder = (ViewHolder) view.getTag();
+        }
 
-        number.setText(data1.get(position));
-        teamname.setText(data2.get(position));
-        played.setText(data3.get(position));
-        gd.setText(data4.get(position));
-        points.setText(data5.get(position));
+        holder.number.setText(data1.get(position));
+        holder.teamname.setText(data2.get(position));
+        holder.played.setText(data3.get(position));
+        holder.gd.setText(data4.get(position));
+        holder.points.setText(data5.get(position));
 
-        return rowView;
+        return view;
 
     };
 
@@ -80,5 +83,28 @@ public class CustomListviewTable extends BaseAdapter {
         this.data4=data4;
         this.data5 = data5;
         notifyDataSetChanged();
+    }
+
+    class ViewHolder {
+        TextView number;
+        TextView teamname;
+        TextView played;
+        TextView gd;
+        TextView points;
+
+
+        public ViewHolder(View rowView) {
+
+
+            number = (TextView) rowView.findViewById(R.id.Position);
+
+            teamname = (TextView) rowView.findViewById(R.id.TeamName);
+
+            played = (TextView) rowView.findViewById(R.id.Played);
+
+            gd = (TextView) rowView.findViewById(R.id.GD);
+
+            points = (TextView) rowView.findViewById(R.id.Points);
+        }
     }
 }
