@@ -54,7 +54,7 @@ public class bar1 extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.bar1,container,false);
 
         swip = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
-        swip.setColorSchemeResources(R.color.refresh,R.color.refresh1,R.color.refresh2);
+        swip.setColorSchemeResources(R.color.refresh1,R.color.refresh2);
 
         swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
