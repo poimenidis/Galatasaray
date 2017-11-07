@@ -76,6 +76,10 @@ public class CustomListviewPlayers extends BaseAdapter {
         holder.pos.setText(data2[position]);
         holder.imgplayer.setImageResource(data3[position]);
 
+        if(data2[position].equals("Goalkeeper"))
+            holder.shirtNoText.setImageResource(R.drawable.goalkeepercustom);
+        else
+            holder.shirtNoText.setImageResource(R.drawable.number);
 
         if( data4[position]==0) {
             holder.No.setVisibility(TextView.INVISIBLE);
