@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,16 +36,59 @@ public class bar1 extends android.support.v4.app.Fragment {
     private ListView listmatches;
     private String fromdate;
     private String todate;
-    ArrayAdapter<String> tableListAdapter;
-    ListView listTable;
-    SwipeRefreshLayout swip;
-    String key="dffbf01eecc3cef8a8dab1e3d05b720f9d2335be742cf048b86161544d4f91b6";
+    private ArrayAdapter<String> tableListAdapter;
+    private ListView listTable;
+    private SwipeRefreshLayout swip;
+    private String key="dffbf01eecc3cef8a8dab1e3d05b720f9d2335be742cf048b86161544d4f91b6";
+
+
+
+    private String[][] dates =new String[][]{
+            {"2017/8/11" , "2017/8/14"},
+            {"2017/8/18","2017/8/21"},
+            {"2017/8/24","2017/8/27"},
+            {"2017/9/8","2017/9/11"},
+            {"2017/9/15","2017/9/18"},
+            {"2017/9/22","2017/9/25"},
+            {"2017/9/29","2017/10/2"},
+            {"2017/10/13","2017/10/15"},
+            {"2017/10/20","2017/10/23"},
+            {"2017/10/27","2017/10/30"},
+            {"2017/11/3","2017/11/6"},
+            {"2017/11/17","2017/11/20"},
+            {"2017/11/24","2017/11/27"},
+            {"2017/12/1","2017/12/4"},
+            {"2017/12/8","2017/12/11"},
+            {"2017/12/15","2017/12/18"},
+            {"2017/12/22","2017/12/25"},
+            {"2018/1/19","2018/1/22"},
+            {"2018/1/26","2018/1/29"},
+            {"2018/2/2","2018/2/5"},
+            {"2018/2/9","2018/2/12"},
+            {"2018/2/16","2018/2/19"},
+            {"2018/2/23","2018/2/26"},
+            {"2018/3/2","2018/3/5"},
+            {"2018/3/9","2018/3/12"},
+            {"2018/3/16","2018/3/19"},
+            {"2018/3/30","2018/4/2"},
+            {"2018/4/6","2018/4/9"},
+            {"2018/4/13","2018/4/16"},
+            {"2018/4/20","2018/4/23"},
+            {"2018/4/27","2018/4/30"},
+            {"2018/5/4","2018/5/7"},
+            {"2018/5/11","2018/5/14"},
+            {"2018/5/18","2018/5/21"}};
+
+    private String[] machdays={"Machday 1", "Machday 2","Machday 3", "Machday 4", "Machday 5", "Machday 6", "Machday 7", "Machday 8", "Machday 9", "Machday 10", "Machday 11", "Machday 12", "Machday 13", "Machday 14", "Machday 15", "Machday 16", "Machday 17", "Machday 18",
+                "Machday 19", "Machday 20", "Machday 21", "Machday 22", "Machday 23", "Machday 24", "Machday 25", "Machday 26", "Machday 27", "Machday 28", "Machday 29",
+            "Machday 30", "Machday 31", "Machday 32", "Machday 33", "Machday 34"};
 
 
     private String[] d1 = {
             null    };
 
-
+    private int pos;
+    private Spinner spinMatchBar;
 
 
 
@@ -111,15 +156,41 @@ public class bar1 extends android.support.v4.app.Fragment {
 
 
 
+        for (int i=0; i<dates.length;i++){
+            if(fromdate.equals(dates[i][0]))
+                pos=i;
+        }
+
+        Log.i("skata", String.valueOf(pos));
+
+
+        spinMatchBar = (Spinner) view.findViewById(R.id.spindates);
+        ArrayAdapter<String> matchdatesAdap = new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, machdays);
+        spinMatchBar.setAdapter(matchdatesAdap);
+
+        spinMatchBar.setSelection(pos);
+
+
+        spinMatchBar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                pos=position;
+                fromdate=dates[position][0];
+                todate = dates[position][1];
+                updateMatches();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        updateMatches();
-    }
+
 
     private void updateMatches() {
         FetchMatchTask task = new FetchMatchTask();
