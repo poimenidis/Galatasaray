@@ -10,7 +10,8 @@
         android:layout_height="41dp"
         android:text="Pos     Team                     P       GD     Pts"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:gravity="left|center"/>
+        android:gravity="left|center"
+        android:background="#c03210"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
