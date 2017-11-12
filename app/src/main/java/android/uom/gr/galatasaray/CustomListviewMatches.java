@@ -72,7 +72,7 @@ public class CustomListviewMatches extends BaseAdapter {
             holder.score.setBackgroundResource(R.color.matches);
         }
         else
-            holder.score.setBackgroundResource(R.color.refresh1);
+            holder.score.setBackgroundResource(R.color.main);
 
         return view;
 

@@ -112,7 +112,7 @@ public class bar1 extends android.support.v4.app.Fragment {
 
         Calendar c=Calendar.getInstance();
 
-        if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY||c.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+        if(c.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
 
             c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
             DateFormat df = new SimpleDateFormat("yyyy/M/d");
@@ -130,6 +130,8 @@ public class bar1 extends android.support.v4.app.Fragment {
             c.add(Calendar.DATE, 3);
              todate = (df.format(c.getTime()));
         }
+
+
 
 
         if(fromdate.equals("2017/11/10")){

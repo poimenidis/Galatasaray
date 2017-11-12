@@ -22,7 +22,7 @@ public class bar3 extends android.support.v4.app.Fragment {
     ListView playerlistView;
     CustomListviewPlayers customListviewPlayers;
 
-    private String[] playersName = {"Cédric Carrasso", "İsmail Çipe", "Eray İşcan", "Fernando Muslera", "Ahmet Şen", "Serdar Aziz", "Hakan Balta", "Ahmet Çalık", "Tarik Çamdal", "Jason Denayer", "Koray Günter"  , "Iasmin Latovlevici", "Martin Linnes"      , "Maicon Brazil"       , "Mariano Brazil"       ,
+    private String[] playersName = {"Cédric Carrasso", "İsmail Çipe", "Eray İşcan", "Fernando Muslera", "Ahmet Şen", "Serdar Aziz", "Hakan Balta", "Ahmet Çalık", "Tarik Çamdal", "Jason Denayer", "Koray Günter"  , "Iasmin Latovlevici", "Martin Linnes"      , "Maicon"       , "Mariano"       ,
             "Atalay Babacan"    , "Emrah Başsan"    , "Younès Belhanda"       , "Tolga Ciğerci"        , "Nigel de Jong"     , "Ryan Donk"             , "Sofiane Féghouli"     , "Fernando"           , "Recep Gül"         ,
             "Umut Gündoğan"  , "Gökay Güney"     , "Selçuk İnan"     , "Papa N'Diaye"	   , "Yasin Öztekin"     , "Garry Rodrigues"   , "Eren Derdiyok", "Bafétimbi Gomis"   , "Sinan Gümüş"        ,
             "Igor Tudor"};
