@@ -1,5 +1,6 @@
 package android.uom.gr.galatasaray;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -164,12 +164,11 @@ public class bar1 extends android.support.v4.app.Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-////                String player = listAdapter.getItem(position);
-//                Intent myIntent = new Intent(getActivity(), PlayersActivity.class);
-//                myIntent.putExtra("player", position); //Optional parameters
-//                startActivity(myIntent);
+                String code = customListviewMatches.getData5(position);
+                Intent myIntent = new Intent(getActivity(), DetailMatchActivity.class);
+                myIntent.putExtra("code", code); //Optional parameters
+                startActivity(myIntent);
 
-                Toast.makeText(getContext(), customListviewMatches.getData5(position), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -221,7 +220,7 @@ public class bar1 extends android.support.v4.app.Fragment {
                 updateMatches();
             }
         };
-        timer.schedule(timerTask, 0, 50000);
+        timer.schedule(timerTask, 0, 200000);
 
 
 
