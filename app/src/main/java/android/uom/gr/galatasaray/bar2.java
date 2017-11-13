@@ -44,6 +44,7 @@ public class bar2 extends android.support.v4.app.Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        swip.setRefreshing(true);
         updateTable();
     }
 

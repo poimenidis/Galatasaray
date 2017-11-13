@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Κώστας Ποιμενίδης on 11/10/2017.
@@ -157,6 +160,20 @@ public class bar1 extends android.support.v4.app.Fragment {
         listmatches.setAdapter(customListviewMatches);
 
 
+        listmatches.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+////                String player = listAdapter.getItem(position);
+//                Intent myIntent = new Intent(getActivity(), PlayersActivity.class);
+//                myIntent.putExtra("player", position); //Optional parameters
+//                startActivity(myIntent);
+
+                Toast.makeText(getContext(), customListviewMatches.getData5(position), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         for (int i=0; i<dates.length;i++){
             if(fromdate.equals(dates[i][0]))
@@ -176,7 +193,12 @@ public class bar1 extends android.support.v4.app.Fragment {
         spinMatchBar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                pos=position;
+
+                swip.setRefreshing(true);
+
+                if(customListviewMatches!=null)
+                customListviewMatches.clear();
+
                 fromdate=dates[position][0];
                 todate = dates[position][1];
                 updateMatches();
@@ -187,6 +209,22 @@ public class bar1 extends android.support.v4.app.Fragment {
 
             }
         });
+
+
+        Timer timer = new Timer();
+        TimerTask timerTask;
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+
+
+                updateMatches();
+            }
+        };
+        timer.schedule(timerTask, 0, 50000);
+
+
+
 
 
         return view;
@@ -200,7 +238,7 @@ public class bar1 extends android.support.v4.app.Fragment {
     }
 
 
-    public class FetchMatchTask   extends AsyncTask<String, Void, List<MatchJsonClass.MatchClass> >{
+    public class FetchMatchTask extends AsyncTask<String, Void, List<MatchJsonClass.MatchClass> >{
 
         @Override
         protected List<MatchJsonClass.MatchClass> doInBackground(String... params) {
@@ -213,6 +251,7 @@ public class bar1 extends android.support.v4.app.Fragment {
             List<String> data2 = new ArrayList<>();
             List<String> data3 = new ArrayList<>();
             List<String> data4 = new ArrayList<>();
+            List<String> data5 = new ArrayList<>();
 
             swip.setRefreshing(true);
             if(strings != null){
@@ -230,9 +269,10 @@ public class bar1 extends android.support.v4.app.Fragment {
 
                     data3.add(table.getAwayteam());
                     data4.add(table.getStatus());
+                    data5.add(table.getMatch_id());
 
                 }
-                customListviewMatches.setDatas(data1,data2,data3,data4);
+                customListviewMatches.setDatas(data1,data2,data3,data4,data5);
             }
             swip.setRefreshing(false);
         }

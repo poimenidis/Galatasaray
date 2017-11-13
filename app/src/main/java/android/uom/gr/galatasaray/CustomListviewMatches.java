@@ -21,6 +21,7 @@ public class CustomListviewMatches extends BaseAdapter {
     private List<String> data2;
     private List<String> data3;
     private List<String> data4;
+    private List<String> data5;
 
     private LayoutInflater inflater;
 
@@ -78,11 +79,12 @@ public class CustomListviewMatches extends BaseAdapter {
 
     };
 
-    public void setDatas(List<String> data1,List<String> data2,List<String> data3,List<String> data4) {
+    public void setDatas(List<String> data1,List<String> data2,List<String> data3,List<String> data4,List<String> data5) {
         this.data1=data1;
         this.data2=data2;
         this.data3 = data3;
         this.data4=data4;
+        this.data5=data5;
         notifyDataSetChanged();
     }
 
@@ -101,7 +103,16 @@ public class CustomListviewMatches extends BaseAdapter {
         }
     }
 
+    public String getData5(int position) {
+        return data5.get(position);
+    }
 
+    public void clear(){
+        data1.clear();
+        data2.clear();
+        data3.clear();
+        notifyDataSetChanged();
+    }
 }
 
 

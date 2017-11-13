@@ -32,6 +32,7 @@ public class MatchJsonClass {
                 String match_awayteam_score;
                 String match_status;
                 String match_date;
+                String match_id;
                 MatchClass mm = new MatchClass();
 
 
@@ -46,6 +47,8 @@ public class MatchJsonClass {
 
                 match_hometeam_score = Noumero.getString("match_hometeam_score");
                 match_awayteam_score = Noumero.getString("match_awayteam_score");
+
+                match_id = Noumero.getString("match_id");
 
 
                 match_date = Noumero.getString("match_date");
@@ -78,19 +81,11 @@ public class MatchJsonClass {
                 mm.setHometeam(match_hometeam_name);
                 mm.setStatus(match_status);
                 mm.setTime(match_time);
+                mm.setMatch_id(match_id);
 
                 results.add(mm);
 
 
-//                if(match_status.equals(""))
-//                results.add(match_hometeam_name+"#"+match_date+"\n"+match_time+"#"+match_awayteam_name+"#"+" ");
-//                else if(!"FT".equals(match_status))
-//                        results.add(match_hometeam_name+"#"+"Today"+"\n"+match_time+"#"+match_awayteam_name+"#"+" ");
-//                else
-//                    if("FT".equals(match_status))
-//                    results.add(match_hometeam_name + "#" + match_hometeam_score + ":" + match_awayteam_score + "#" + match_awayteam_name+"#"+"FT");
-//                    else
-//                        results.add(match_hometeam_name + "#" + match_hometeam_score + ":" + match_awayteam_score + "#" + match_awayteam_name+"#"+" ");
 
             }
 
@@ -115,9 +110,18 @@ public class MatchJsonClass {
         private String homescore;
         private String awayscore;
         private String status;
+        private String match_id;
 
         public MatchClass(){
 
+        }
+
+        public String getMatch_id() {
+            return match_id;
+        }
+
+        public void setMatch_id(String match_id) {
+            this.match_id = match_id;
         }
 
         public String getStatus() {
