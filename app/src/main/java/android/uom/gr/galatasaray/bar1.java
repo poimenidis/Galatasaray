@@ -151,12 +151,10 @@ public class bar1 extends android.support.v4.app.Fragment {
         }
 
         List<String> data1 = new ArrayList<>(Arrays.asList(d1));
-        List<String> data2 = new ArrayList<>(Arrays.asList(d1));
-        List<String> data3 = new ArrayList<>(Arrays.asList(d1));
-        List<String> data0 = new ArrayList<>(Arrays.asList(d1));
 
         listmatches = (ListView) view.findViewById(R.id.listMatches);
-        customListviewMatches=new CustomListviewMatches(this.getActivity(),data1,data2,data3,data0);
+        customListviewMatches=new CustomListviewMatches(this.getActivity());
+        customListviewMatches.setDatas(data1,data1,data1,data1,null);
         listmatches.setAdapter(customListviewMatches);
 
 
@@ -164,10 +162,16 @@ public class bar1 extends android.support.v4.app.Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                String code = customListviewMatches.getData5(position);
+                customListviewMatches.setPos(position);
                 Intent myIntent = new Intent(getActivity(), DetailMatchActivity.class);
-                myIntent.putExtra("code", code); //Optional parameters
+
+
+                myIntent.putExtra("code",customListviewMatches.getData5().get(position));
+                myIntent.putExtra("todate",todate);
+                myIntent.putExtra("fromdate",fromdate);
+
                 startActivity(myIntent);
+
 
             }
         });
@@ -325,7 +329,7 @@ public class bar1 extends android.support.v4.app.Fragment {
                 Log.i("TABLE: ",matchJsonStr);
 
                 List<MatchJsonClass.MatchClass> MatchList =
-                        MatchJsonClass.getMatchFromJson(matchJsonStr, 9);
+                        MatchJsonClass.getMatchFromJson(matchJsonStr);
 
 
                 return MatchList;

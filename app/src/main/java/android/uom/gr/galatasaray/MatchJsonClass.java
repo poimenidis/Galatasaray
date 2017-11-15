@@ -16,12 +16,13 @@ import java.util.List;
 public class MatchJsonClass {
 
 
-    public static List<MatchClass> getMatchFromJson(String jsonString, int teams) {
+    public static List<MatchClass> getMatchFromJson(String jsonString) {
         List<MatchClass> results = new ArrayList<>();
 
 
         try {
             JSONArray jsonArray = new JSONArray(jsonString);//ksekiname etsi na diavazoyme JSON
+
 
             for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -83,6 +84,12 @@ public class MatchJsonClass {
                 mm.setTime(match_time);
                 mm.setMatch_id(match_id);
 
+
+
+                JSONArray goalscorer = Noumero.getJSONArray("goalscorer");
+
+
+
                 results.add(mm);
 
 
@@ -111,9 +118,18 @@ public class MatchJsonClass {
         private String awayscore;
         private String status;
         private String match_id;
+        private ArrayList<String> Texts;
 
         public MatchClass(){
 
+        }
+
+        public void setTexts(ArrayList<String> texts) {
+            Texts = texts;
+        }
+
+        public ArrayList<String> getTexts() {
+            return Texts;
         }
 
         public String getMatch_id() {
