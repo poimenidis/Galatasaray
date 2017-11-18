@@ -29,6 +29,8 @@ public class DetailMatchJsonClass {
         String match_live;
         String match_date;
         ArrayList<String> Texts;
+        String match_hometeam_halftime_score;
+        String match_awayteam_halftime_score;
 
         try {
             JSONArray jsonArray = new JSONArray(jsonString);//ksekiname etsi na diavazoyme JSON
@@ -69,6 +71,7 @@ public class DetailMatchJsonClass {
 //                hour+=hourplus-1;
 //                splited[0]=hour.toString();
 
+            Texts = new ArrayList<>();
 
 
                 match_status = Noumero.getString("match_status");
@@ -83,14 +86,39 @@ public class DetailMatchJsonClass {
                 results.setTime(match_time);
 
 
-                JSONArray goalscorer = Noumero.getJSONArray("goalscorer");
 
-
-
-            Texts = new ArrayList<>();
+            match_hometeam_halftime_score = Noumero.getString("match_hometeam_halftime_score");
+            if(match_hometeam_halftime_score.equals(""))
+                match_hometeam_halftime_score="0";
+            match_awayteam_halftime_score = Noumero.getString("match_awayteam_halftime_score");
+            if(match_awayteam_halftime_score.equals(""))
+                match_awayteam_halftime_score="0";
 
             if(match_live.equals("1"))
-                Texts.add("1' - KICK OFF! The game has just started!");
+                Texts.add("KICK OFF! The game has just started!");
+
+            if(match_status.equals("HT"))
+                Texts.add("45' - FIRST HALF ENDS,\n"+match_hometeam_name+" "+match_hometeam_halftime_score+" "+match_awayteam_name+" "+match_awayteam_halftime_score);
+
+            if(!match_status.equals("")&&!match_status.equals("FT")&&!match_status.equals("HT")) {
+                String[] splited = match_status.split("'");
+                int hour = Integer.parseInt(splited[0]);
+                if (hour > 45) {
+                    Texts.add("45' - FIRST HALF ENDS,\n"+match_hometeam_name+" "+match_hometeam_halftime_score+" "+match_awayteam_name+" "+match_awayteam_halftime_score);
+                    Texts.add("46' - SECOND HALF IS UNDERWAY");
+                }
+            }
+
+            if (match_status.equals("FT")) {
+                Texts.add("45' - FIRST HALF ENDS,\n"+match_hometeam_name+" "+match_hometeam_halftime_score+" "+match_awayteam_name+" "+match_awayteam_halftime_score);
+                Texts.add("46' - SECOND HALF IS UNDERWAY");
+            }
+
+
+
+
+
+            JSONArray goalscorer = Noumero.getJSONArray("goalscorer");
 
             for (int j = 0; j < goalscorer.length(); j++) {
 
@@ -168,7 +196,7 @@ public class DetailMatchJsonClass {
 
 
             if(match_status.equals("FT"))
-                Texts.add("FULL TIME: "+match_hometeam_name+" "+match_hometeam_score+" "+match_awayteam_name+" "+match_awayteam_score);
+                Texts.add("FULL TIME: \n"+match_hometeam_name+" "+match_hometeam_score+" "+match_awayteam_name+" "+match_awayteam_score);
 
 
                 results.setTexts(Texts);

@@ -98,7 +98,7 @@ public class DetailMatchActivity extends AppCompatActivity {
 
             ListAdapter = new ArrayAdapter<String>(
                     this.getContext(),
-                    R.layout.list_item_texts,
+                    R.layout.textviewcustomeddetails,
                     R.id.list_item_texts_textview, weekForecast);
 
             ListView TextsListView = (ListView)rootView.findViewById(R.id.listview_texts);

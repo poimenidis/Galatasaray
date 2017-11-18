@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="android.uom.gr.galatasaray.PlayersActivity$PlayersActivityFragment"
-    android:background="#F59E06">
+    android:background="@color/main">
 
     <TextView
         android:id="@+id/onomapaixtiID"

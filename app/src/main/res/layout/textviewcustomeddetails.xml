@@ -9,14 +9,16 @@
     android:background="@color/refresh2">
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/matches"
+    android:background="@android:color/holo_orange_light"
     android:id="@+id/list_item_texts_textview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:text="NO INTERNET CONNEXTION"
-    android:textStyle="bold"
-    android:textAppearance="@style/TextAppearance.AppCompat.Medium"></TextView>
+    android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+    android:textStyle="bold">
+
+</TextView>
 
 </RelativeLayout>
