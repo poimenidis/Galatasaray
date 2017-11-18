@@ -7,6 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Κώστας Ποιμενίδης on 15/11/2017.
@@ -24,15 +26,14 @@ public class DetailMatchJsonClass {
         String match_awayteam_name;
         String match_awayteam_score;
         String match_status;
+        String match_live;
         String match_date;
+        ArrayList<String> Texts;
 
         try {
             JSONArray jsonArray = new JSONArray(jsonString);//ksekiname etsi na diavazoyme JSON
 
-
-
-
-
+            Log.i("skataa", jsonString);
 
 
 
@@ -71,6 +72,7 @@ public class DetailMatchJsonClass {
 
 
                 match_status = Noumero.getString("match_status");
+                match_live = Noumero.getString("match_live");
 
                 results.setAwayscore(match_awayteam_score);
                 results.setAwayteam(match_awayteam_name);
@@ -84,9 +86,13 @@ public class DetailMatchJsonClass {
                 JSONArray goalscorer = Noumero.getJSONArray("goalscorer");
 
 
-                ArrayList<String> Texts = new ArrayList<>();
 
-                for (int j = 0; j < goalscorer.length(); j++) {
+            Texts = new ArrayList<>();
+
+            if(match_live.equals("1"))
+                Texts.add("1' - KICK OFF! The game has just started!");
+
+            for (int j = 0; j < goalscorer.length(); j++) {
 
                     String text;
 
@@ -112,6 +118,58 @@ public class DetailMatchJsonClass {
                     Texts.add(text);
 
                 }
+
+            JSONArray cards = Noumero.getJSONArray("cards");
+
+            for (int k = 0; k < cards.length(); k++) {
+
+                String text = null;
+
+                String time;
+                String home_fault;
+                String card;
+                String away_fault;
+
+                JSONObject Noumerocards = cards.getJSONObject(k);
+
+                time = Noumerocards.getString("time");
+                home_fault = Noumerocards.getString("home_fault");
+                card = Noumerocards.getString("card");
+                away_fault = Noumerocards.getString("away_fault");
+
+
+                if(!time.equals("")) {
+                    text = time + " - " + card + " for ";
+
+                    if (!home_fault.equals(""))
+                        text += home_fault + " " + match_hometeam_name + " player";
+                    else if (!away_fault.equals(""))
+                        text += away_fault + " " + match_awayteam_name + " player";
+
+                    Texts.add(text);
+                }
+
+            }
+
+
+            Collections.sort(Texts, new Comparator<String>() {
+                public int compare(String o1, String o2) {
+                     o1 = o1.substring (0,2);
+                     o2 = o2.substring (0,2);
+                    return extractInt(o1) - extractInt(o2);
+                }
+
+                int extractInt(String s) {
+                    String num = s.replaceAll("\\D", "");
+                    // return 0 if no digits found
+                    return num.isEmpty() ? 0 : Integer.parseInt(num);
+                }
+            });
+
+
+            if(match_status.equals("FT"))
+                Texts.add("FULL TIME: "+match_hometeam_name+" "+match_hometeam_score+" "+match_awayteam_name+" "+match_awayteam_score);
+
 
                 results.setTexts(Texts);
 
