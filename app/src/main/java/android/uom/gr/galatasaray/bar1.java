@@ -264,8 +264,6 @@ public class bar1 extends android.support.v4.app.Fragment {
 
                     if(table.getStatus().equals(""))
                     data2.add(table.getDate()+"\n"+table.getTime());
-                    else if(!"FT".equals(table.getStatus()))
-                    data2.add("Today"+"\n"+table.getTime());
                     else
                         data2.add(table.getHomescore()+":"+table.getAwayscore());
 

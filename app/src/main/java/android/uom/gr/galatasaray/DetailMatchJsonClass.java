@@ -116,10 +116,6 @@ public class DetailMatchJsonClass {
                 results.setTexts(Texts);
 
 
-                Log.i("skataaa", results.getTexts().toString());
-
-
-
         } catch (JSONException e) {
             Log.e("WeatherJsonParser", e.getMessage());
         }

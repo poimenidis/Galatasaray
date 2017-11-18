@@ -129,6 +129,7 @@ public class MatchJsonClass {
         }
 
         public ArrayList<String> getTexts() {
+
             return Texts;
         }
 

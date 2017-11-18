@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="android.uom.gr.galatasaray.DetailMatchActivity$DetailMatchActivityFragment"
+    android:background="@color/refresh2">
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/matches"
+    android:id="@+id/list_item_texts_textview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:text="NO INTERNET CONNEXTION"
+    android:textStyle="bold"
+    android:textAppearance="@style/TextAppearance.AppCompat.Medium"></TextView>
+
+</RelativeLayout>

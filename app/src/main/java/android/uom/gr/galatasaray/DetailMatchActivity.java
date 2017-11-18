@@ -9,7 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +19,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class DetailMatchActivity extends AppCompatActivity {
 
@@ -26,7 +31,6 @@ public class DetailMatchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_match);
-
 
 
         Bundle extras = getIntent().getExtras();
@@ -38,14 +42,12 @@ public class DetailMatchActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new DetailMatchActivityFragment(code,fromdate,todate))
+                    .add(R.id.container, new DetailMatchActivityFragment(code, fromdate, todate))
                     .commit();
         }
 
 
     }
-
-
 
 
     public static class DetailMatchActivityFragment extends Fragment {
@@ -61,12 +63,18 @@ public class DetailMatchActivity extends AppCompatActivity {
         private String fromdate;
         private DetailMatchJsonClass dj;
         private SwipeRefreshLayout swip;
+        ArrayAdapter<String> ListAdapter;
 
-        public DetailMatchActivityFragment(String intValue,String fromdate,String todate) {
+        String[] data = {
+                "NO INTERNET CONNECTION"
+        };
+        List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
 
-            code=intValue;
-            this.todate=todate;
-            this.fromdate=fromdate;
+        public DetailMatchActivityFragment(String intValue, String fromdate, String todate) {
+
+            code = intValue;
+            this.todate = todate;
+            this.fromdate = fromdate;
         }
 
         @Override
@@ -74,10 +82,9 @@ public class DetailMatchActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_detail_matches, container, false);
 
-            TextView textcode = (TextView) rootView.findViewById(R.id.codeMatch);
 
             swip = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
-            swip.setColorSchemeResources(R.color.refresh1,R.color.refresh2);
+            swip.setColorSchemeResources(R.color.refresh1, R.color.refresh2);
 
             swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -87,59 +94,82 @@ public class DetailMatchActivity extends AppCompatActivity {
             });
 
 
-            textcode.setText(code+fromdate+todate);
+
+
+            ListAdapter = new ArrayAdapter<String>(
+                    this.getContext(),
+                    R.layout.list_item_texts,
+                    R.id.list_item_texts_textview, weekForecast);
+
+            ListView TextsListView = (ListView)rootView.findViewById(R.id.listview_texts);
+            TextsListView.setAdapter(ListAdapter);
+
+
+
+
+
+
+
+            Timer timer = new Timer();
+            TimerTask timerTask;
+            timerTask = new TimerTask() {
+                @Override
+                public void run() {
+
+
+                    updateMatcheDetails();
+                }
+            };
+            timer.schedule(timerTask, 0, 200000);
+
+
 
 
             return rootView;
         }
 
         private void updateMatcheDetails() {
-            FetchMatchTask task = new FetchMatchTask();
+            FetchTask task = new FetchTask();
             task.execute();
         }
 
 
 
-        public class FetchMatchTask extends AsyncTask<String, Void, MatchJsonClass.MatchClass > {
+
+        public class FetchTask extends AsyncTask<String, Void, MatchJsonClass.MatchClass> {
 
             @Override
             protected MatchJsonClass.MatchClass doInBackground(String... params) {
-                return fetchMatchData();
+                return fetchData();
             }
 
             @Override
             protected void onPostExecute(MatchJsonClass.MatchClass table) {
-                List<String> data1 = new ArrayList<>();
-                List<String> data2 = new ArrayList<>();
-                List<String> data3 = new ArrayList<>();
-                List<String> data4 = new ArrayList<>();
-                List<String> data5 = new ArrayList<>();
 
-//                swip.setRefreshing(true);
-                if(table != null){
+                swip.setRefreshing(true);
+                if (table != null) {
 
-//                    tableListAdapter.add(table);
-                        data1.add(table.getHometeam());
+                    ListAdapter.clear();
 
-                        if(table.getStatus().equals(""))
-                            data2.add(table.getDate()+"\n"+table.getTime());
-                        else if(!"FT".equals(table.getStatus()))
-                            data2.add("Today"+"\n"+table.getTime());
-                        else
-                            data2.add(table.getHomescore()+":"+table.getAwayscore());
+                    if(table.getTexts()!=null){
 
+                        Collections.reverse(table.getTexts());
 
-                        data3.add(table.getAwayteam());
-                        data4.add(table.getStatus());
-                        data5.add(table.getMatch_id());
+                        for(String t : table.getTexts()){
 
+                            ListAdapter.add(t);
+
+                        }
                     }
-//                    customListviewMatches.setDatas(data1,data2,data3,data4,data5);
+//
+
                 }
-//                swip.setRefreshing(false);
+
+                swip.setRefreshing(false);
             }
 
-            private MatchJsonClass.MatchClass fetchMatchData() {
+
+            private MatchJsonClass.MatchClass fetchData() {
 
                 // These two need to be declared outside the try/catch
                 // so that they can be closed in the finally block.
@@ -155,7 +185,7 @@ public class DetailMatchActivity extends AppCompatActivity {
                     // http://openweathermap.org/API#forecast
                     //MODIFIED FOR CITY OF THESSALONIKI, GREECE
                     URL url = new URL
-                            ("https://apifootball.com/api/?action=get_events&from="+fromdate+"&to="+todate+"&league_id=376&match_id="+code+
+                            ("https://apifootball.com/api/?action=get_events&from=" + fromdate + "&to=" + todate + "&league_id=376&match_id=" + code +
                                     "&APIkey=dffbf01eecc3cef8a8dab1e3d05b720f9d2335be742cf048b86161544d4f91b6");
 
                     // Create the request to OpenWeatherMap, and open the connection
@@ -184,15 +214,16 @@ public class DetailMatchActivity extends AppCompatActivity {
                     }
                     matchJsonStr = buffer.toString();
 
-                    Log.i("TABLEe: ","https://apifootball.com/api/?action=get_events&from="+fromdate+"&to="+todate+"&league_id=376&match_id="+code+
+                    Log.i("TABLEe: ", "https://apifootball.com/api/?action=get_events&from=" + fromdate + "&to=" + todate + "&league_id=376&match_id=" + code +
                             "&APIkey=dffbf01eecc3cef8a8dab1e3d05b720f9d2335be742cf048b86161544d4f91b6");
-                    Log.i("TABLE: ",matchJsonStr);
+                    Log.i("TABLE: ", matchJsonStr);
 
-                    MatchJsonClass.MatchClass MatchList =
+                    MatchJsonClass.MatchClass DetailList =
                             DetailMatchJsonClass.getDetailMatchFromJsonClass(matchJsonStr);
 
 
-                    return MatchList;
+
+                    return DetailList;
 
                 } catch (IOException e) {
                     Log.e("ForecastFragment", "Error ", e);
@@ -216,3 +247,4 @@ public class DetailMatchActivity extends AppCompatActivity {
 
 
     }
+}
