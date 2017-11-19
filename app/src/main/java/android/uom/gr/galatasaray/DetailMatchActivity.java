@@ -3,7 +3,6 @@ package android.uom.gr.galatasaray;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,6 +35,9 @@ public class DetailMatchActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         String code = extras.getString("code");
+        String team1 = extras.getString("team1");
+        String score = extras.getString("score");
+        String team2 = extras.getString("team2");
         String todate = extras.getString("todate");
         String fromdate = extras.getString("fromdate");
 
@@ -42,7 +45,7 @@ public class DetailMatchActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new DetailMatchActivityFragment(code, fromdate, todate))
+                    .add(R.id.container, new DetailMatchActivityFragment(code,team1,team2,score, fromdate, todate))
                     .commit();
         }
 
@@ -52,6 +55,7 @@ public class DetailMatchActivity extends AppCompatActivity {
 
     public static class DetailMatchActivityFragment extends Fragment {
 
+        private String time;
         private String home_team_name;
         private String away_team_name;
         private String score;
@@ -61,8 +65,10 @@ public class DetailMatchActivity extends AppCompatActivity {
         private String code;
         private String todate;
         private String fromdate;
+        private  String team1;
+        private String team2;
+        private String Score;
         private DetailMatchJsonClass dj;
-        private SwipeRefreshLayout swip;
         ArrayAdapter<String> ListAdapter;
 
         String[] data = {
@@ -70,9 +76,12 @@ public class DetailMatchActivity extends AppCompatActivity {
         };
         List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
 
-        public DetailMatchActivityFragment(String intValue, String fromdate, String todate) {
+        public DetailMatchActivityFragment(String code, String team1, String team2,String score, String fromdate, String todate) {
 
-            code = intValue;
+            this.code = code;
+            this.team1=team1;
+            this.Score=score;
+            this.team2=team2;
             this.todate = todate;
             this.fromdate = fromdate;
         }
@@ -83,17 +92,20 @@ public class DetailMatchActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_detail_matches, container, false);
 
 
-            swip = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
-            swip.setColorSchemeResources(R.color.refresh1, R.color.refresh2);
-
-            swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    updateMatcheDetails();
-                }
-            });
 
 
+            TextView Team1 = (TextView) rootView.findViewById(R.id.textView6);
+            Team1.setText(team1);
+
+
+            TextView score = (TextView) rootView.findViewById(R.id.textView7);
+            score.setText(" "+Score);
+
+            TextView Team2 = (TextView) rootView.findViewById(R.id.textView8);
+            Team2.setText(team2);
+
+            TextView Time = (TextView) rootView.findViewById(R.id.textView9);
+            Time.setText(getTime());
 
 
             ListAdapter = new ArrayAdapter<String>(
@@ -146,8 +158,9 @@ public class DetailMatchActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(MatchJsonClass.MatchClass table) {
 
-                swip.setRefreshing(true);
                 if (table != null) {
+                    setTime(table.getStatus());
+
 
                     ListAdapter.clear();
 
@@ -165,7 +178,6 @@ public class DetailMatchActivity extends AppCompatActivity {
 
                 }
 
-                swip.setRefreshing(false);
             }
 
 
@@ -245,6 +257,12 @@ public class DetailMatchActivity extends AppCompatActivity {
             }
         }
 
+        public String getTime() {
+            return time;
+        }
 
+        public void setTime(String time) {
+            this.time = time;
+        }
     }
 }

@@ -111,7 +111,7 @@ public class CustomListviewMatches extends BaseAdapter {
         data2.clear();
         data3.clear();
         notifyDataSetChanged();
-    }
+}
 
     public void setPos(int pos) {
         Pos = pos;
@@ -127,6 +127,10 @@ public class CustomListviewMatches extends BaseAdapter {
 
     public List<String> getData2() {
         return data2;
+    }
+
+    public List<String> getData3() {
+        return data3;
     }
 
     public List<String> getData5() {

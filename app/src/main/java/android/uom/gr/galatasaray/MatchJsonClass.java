@@ -173,6 +173,10 @@ public class MatchJsonClass {
             return time;
         }
 
+        public void setTime(String time) {
+            this.time = time;
+        }
+
         public void setAwayscore(String awayscore) {
             this.awayscore = awayscore;
         }
@@ -193,9 +197,6 @@ public class MatchJsonClass {
             this.hometeam = hometeam;
         }
 
-        public void setTime(String time) {
-            this.time = time;
-        }
 
     }
 
