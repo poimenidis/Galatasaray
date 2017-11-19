@@ -94,8 +94,6 @@ public class DetailMatchJsonClass {
             if(match_awayteam_halftime_score.equals(""))
                 match_awayteam_halftime_score="0";
 
-            if(match_live.equals("1"))
-                Texts.add("KICK OFF! The game has just started!");
 
             if(match_status.equals("HT"))
                 Texts.add("45' - FIRST HALF ENDS,\n"+match_hometeam_name+" "+match_hometeam_halftime_score+" "+match_awayteam_name+" "+match_awayteam_halftime_score);
@@ -107,11 +105,16 @@ public class DetailMatchJsonClass {
                     Texts.add("45' - FIRST HALF ENDS,\n"+match_hometeam_name+" "+match_hometeam_halftime_score+" "+match_awayteam_name+" "+match_awayteam_halftime_score);
                     Texts.add("46' - SECOND HALF IS UNDERWAY");
                 }
+
+                if(hour>1)
+                    Texts.add("KICK OFF! The game has just started!");
+
             }
 
             if (match_status.equals("FT")) {
                 Texts.add("45' - FIRST HALF ENDS,\n"+match_hometeam_name+" "+match_hometeam_halftime_score+" "+match_awayteam_name+" "+match_awayteam_halftime_score);
                 Texts.add("46' - SECOND HALF IS UNDERWAY");
+                Texts.add("KICK OFF! The game has just started!");
             }
 
 
