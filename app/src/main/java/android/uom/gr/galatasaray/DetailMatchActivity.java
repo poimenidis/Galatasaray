@@ -1,5 +1,6 @@
 package android.uom.gr.galatasaray;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -81,7 +82,7 @@ public class DetailMatchActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_detail_matches, container, false);
+            final View rootView = inflater.inflate(R.layout.fragment_detail_matches, container, false);
 
 
 
@@ -117,7 +118,7 @@ public class DetailMatchActivity extends AppCompatActivity {
                 public void run() {
 
 
-                    updateMatcheDetails();
+                    updateMatcheDetails(rootView);
                 }
             };
             timer.schedule(timerTask, 0, 200000);
@@ -128,45 +129,61 @@ public class DetailMatchActivity extends AppCompatActivity {
             return rootView;
         }
 
-        private void updateMatcheDetails() {
-            FetchTask task = new FetchTask();
+        private void updateMatcheDetails(View view) {
+            FetchTask task = new FetchTask(view);
             task.execute();
         }
 
 
 
 
+        @SuppressLint("StaticFieldLeak")
         public class FetchTask extends AsyncTask<String, Void, MatchJsonClass.MatchClass> {
+
+            private View vRef;
+
+            FetchTask(View v) {
+                vRef =v;
+            }
 
             @Override
             protected MatchJsonClass.MatchClass doInBackground(String... params) {
                 return fetchData();
             }
 
+
+
             @Override
             protected void onPostExecute(MatchJsonClass.MatchClass table) {
 
                 String status;
+                String sc;
 
                 if (table != null) {
 
-                    TextView Time = (TextView) getView().findViewById(R.id.textView9) ;
-                    if(table.getStatus().equals("FT"))
-                        status="END";
-                    else if(table.getStatus().equals("HT"))
-                        status="Half Time";
-                    else
-                        status=table.getStatus();
+                    if (vRef != null) {
+
+                        TextView Time = (TextView) vRef.findViewById(R.id.textView9);
+                        if (table.getStatus().equals("FT"))
+                            status = "END";
+                        else if (table.getStatus().equals("HT"))
+                            status = "Half Time";
+                        else
+                            status = table.getStatus();
 
 
-                    Time.setText(status);
+                        Time.setText(status);
 
 
-                    TextView score = (TextView) getView().findViewById(R.id.textView7);
-                    if(table.getStatus().equals(""))
-                        score.setText(" "+table.getDate()+"\n "+table.getTime());
-                    else
-                        score.setText(" "+table.getHomescore()+":"+table.getAwayscore());
+                        TextView score = (TextView) vRef.findViewById(R.id.textView7);
+                        if (table.getStatus().equals(""))
+                            sc=" " + table.getDate() + "\n " + table.getTime();
+                        else
+                            sc=" " + table.getHomescore() + ":" + table.getAwayscore();
+
+                        score.setText(sc);
+
+                    }
 
 
                     ListAdapter.clear();

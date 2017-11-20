@@ -106,7 +106,7 @@ public class DetailMatchJsonClass {
                     Texts.add("46' - SECOND HALF IS UNDERWAY");
                 }
 
-                if(hour>1)
+                if(hour>=1)
                     Texts.add("KICK OFF! The game has just started!");
 
             }
