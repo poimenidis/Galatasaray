@@ -66,11 +66,12 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="92dp"
         android:gravity="center"
-        android:text="- : -"
+        android:text=" - : -"
         android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="4dp" />
 
     <TextView
         android:textColor="@android:color/background_light"
@@ -81,7 +82,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="45'"
         android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
         app:layout_constraintBottom_toTopOf="@+id/listview_texts"
         app:layout_constraintEnd_toEndOf="parent"

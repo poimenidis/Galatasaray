@@ -36,7 +36,6 @@ public class DetailMatchActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String code = extras.getString("code");
         String team1 = extras.getString("team1");
-        String score = extras.getString("score");
         String team2 = extras.getString("team2");
         String todate = extras.getString("todate");
         String fromdate = extras.getString("fromdate");
@@ -45,7 +44,7 @@ public class DetailMatchActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new DetailMatchActivityFragment(code,team1,team2,score, fromdate, todate))
+                    .add(R.id.container, new DetailMatchActivityFragment(code,team1,team2, fromdate, todate))
                     .commit();
         }
 
@@ -55,20 +54,14 @@ public class DetailMatchActivity extends AppCompatActivity {
 
     public static class DetailMatchActivityFragment extends Fragment {
 
-        private String time;
-        private String home_team_name;
-        private String away_team_name;
-        private String score;
-        private String match_status;
-        private String matchTime;
-        private ArrayList<String> Texts;
+
+
+
         private String code;
         private String todate;
         private String fromdate;
         private  String team1;
         private String team2;
-        private String Score;
-        private DetailMatchJsonClass dj;
         ArrayAdapter<String> ListAdapter;
 
         String[] data = {
@@ -76,11 +69,10 @@ public class DetailMatchActivity extends AppCompatActivity {
         };
         List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
 
-        public DetailMatchActivityFragment(String code, String team1, String team2,String score, String fromdate, String todate) {
+        public DetailMatchActivityFragment(String code, String team1, String team2,String fromdate, String todate) {
 
             this.code = code;
             this.team1=team1;
-            this.Score=score;
             this.team2=team2;
             this.todate = todate;
             this.fromdate = fromdate;
@@ -98,14 +90,10 @@ public class DetailMatchActivity extends AppCompatActivity {
             Team1.setText(team1);
 
 
-            TextView score = (TextView) rootView.findViewById(R.id.textView7);
-            score.setText(" "+Score);
+
 
             TextView Team2 = (TextView) rootView.findViewById(R.id.textView8);
             Team2.setText(team2);
-
-            TextView Time = (TextView) rootView.findViewById(R.id.textView9);
-            Time.setText(getTime());
 
 
             ListAdapter = new ArrayAdapter<String>(
@@ -158,8 +146,27 @@ public class DetailMatchActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(MatchJsonClass.MatchClass table) {
 
+                String status;
+
                 if (table != null) {
-                    setTime(table.getStatus());
+
+                    TextView Time = (TextView) getView().findViewById(R.id.textView9) ;
+                    if(table.getStatus().equals("FT"))
+                        status="END";
+                    else if(table.getStatus().equals("HT"))
+                        status="Half Time";
+                    else
+                        status=table.getStatus();
+
+
+                    Time.setText(status);
+
+
+                    TextView score = (TextView) getView().findViewById(R.id.textView7);
+                    if(table.getStatus().equals(""))
+                        score.setText(" "+table.getDate()+"\n "+table.getTime());
+                    else
+                        score.setText(" "+table.getHomescore()+":"+table.getAwayscore());
 
 
                     ListAdapter.clear();
@@ -257,12 +264,5 @@ public class DetailMatchActivity extends AppCompatActivity {
             }
         }
 
-        public String getTime() {
-            return time;
-        }
-
-        public void setTime(String time) {
-            this.time = time;
-        }
     }
 }

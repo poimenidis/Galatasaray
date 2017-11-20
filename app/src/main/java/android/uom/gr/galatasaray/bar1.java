@@ -168,7 +168,6 @@ public class bar1 extends android.support.v4.app.Fragment {
 
                 myIntent.putExtra("code",customListviewMatches.getData5().get(position));
                 myIntent.putExtra("team1",customListviewMatches.getData1().get(position));
-                myIntent.putExtra("score",customListviewMatches.getData2().get(position));
                 myIntent.putExtra("team2",customListviewMatches.getData3().get(position));
                 myIntent.putExtra("todate",todate);
                 myIntent.putExtra("fromdate",fromdate);
