@@ -20,15 +20,13 @@ public class CustomListviewPlayers extends BaseAdapter {
     private String[] data2;
     private Integer[] data3;
     private Integer[] data4;
-    private static final int TYPE_HEADER = 0;
-    private static final int TYPE_ROW = 1;
     private LayoutInflater inflater;
 
 
 
 
 
-    public CustomListviewPlayers(Activity context, String[] itemname, String[]imgid,Integer[] data3,Integer[] data4) {
+     CustomListviewPlayers(Activity context, String[] itemname, String[]imgid,Integer[] data3,Integer[] data4) {
 
 
         this.context=context;
@@ -88,7 +86,8 @@ public class CustomListviewPlayers extends BaseAdapter {
 
         }
         else{
-            holder.No.setText(data4[position].toString());
+            String k= data4[position].toString();
+            holder.No.setText(k);
             holder.No.setVisibility(TextView.VISIBLE);
 
             holder.shirtNoText.setVisibility(TextView.VISIBLE);
@@ -106,14 +105,14 @@ public class CustomListviewPlayers extends BaseAdapter {
     }
 
 
-    public static class ViewHolder {
-        public final TextView name;
-        public final TextView pos;
-        public final ImageView imgplayer;
-        public final TextView No;
-        public final ImageView shirtNoText;
+     static class ViewHolder {
+         final TextView name;
+         final TextView pos;
+         final ImageView imgplayer;
+         final TextView No;
+         final ImageView shirtNoText;
 
-        public ViewHolder(View view) {
+         ViewHolder(View view) {
             pos = (TextView) view.findViewById(R.id.Textplayers);
             name = (TextView) view.findViewById(R.id.textviewposition);
             imgplayer = (ImageView) view.findViewById(R.id.imageplayer);

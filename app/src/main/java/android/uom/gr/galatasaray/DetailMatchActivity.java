@@ -121,7 +121,7 @@ public class DetailMatchActivity extends AppCompatActivity {
                     updateMatcheDetails(rootView);
                 }
             };
-            timer.schedule(timerTask, 0, 200000);
+            timer.schedule(timerTask, 0, 100000);
 
 
 
@@ -198,6 +198,8 @@ public class DetailMatchActivity extends AppCompatActivity {
 
                         }
                     }
+
+                        ListAdapter.add("The games starts on "+table.getDate()+" at "+table.getTime());
 //
 
                 }
