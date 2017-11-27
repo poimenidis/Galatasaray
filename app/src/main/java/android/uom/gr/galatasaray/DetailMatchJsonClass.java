@@ -95,8 +95,10 @@ public class DetailMatchJsonClass {
                 match_awayteam_halftime_score="0";
 
 
-            if(match_status.equals("HT"))
-                Texts.add("45' - FIRST HALF ENDS,\n"+match_hometeam_name+" "+match_hometeam_halftime_score+" "+match_awayteam_name+" "+match_awayteam_halftime_score);
+            if(match_status.equals("HT")) {
+                Texts.add("45' - FIRST HALF ENDS,\n" + match_hometeam_name + " " + match_hometeam_halftime_score + " " + match_awayteam_name + " " + match_awayteam_halftime_score);
+                Texts.add("KICK OFF! The game has just started!");
+            }
 
             if(!match_status.equals("")&&!match_status.equals("FT")&&!match_status.equals("HT")) {
                 String[] splited = match_status.split("'");
