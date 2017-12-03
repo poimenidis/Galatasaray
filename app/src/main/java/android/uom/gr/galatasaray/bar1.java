@@ -114,6 +114,7 @@ public class bar1 extends android.support.v4.app.Fragment {
 
 
         Calendar c=Calendar.getInstance();
+        c.setFirstDayOfWeek(Calendar.MONDAY);
 
         if(c.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
 

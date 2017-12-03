@@ -26,7 +26,6 @@ public class DetailMatchJsonClass {
         String match_awayteam_name;
         String match_awayteam_score;
         String match_status;
-        String match_live;
         String match_date;
         ArrayList<String> Texts;
         String match_hometeam_halftime_score;
@@ -75,7 +74,6 @@ public class DetailMatchJsonClass {
 
 
                 match_status = Noumero.getString("match_status");
-                match_live = Noumero.getString("match_live");
 
                 results.setAwayscore(match_awayteam_score);
                 results.setAwayteam(match_awayteam_name);
@@ -100,7 +98,21 @@ public class DetailMatchJsonClass {
                 Texts.add("KICK OFF! The game has just started!");
             }
 
-            if(!match_status.equals("")&&!match_status.equals("FT")&&!match_status.equals("HT")) {
+            if(match_status.contains("+")) {
+                String[] splited = match_status.split("\\+");
+                int hour = Integer.parseInt(splited[0]);
+
+                if(hour==45){
+                    Texts.add("KICK OFF! The game has just started!");
+                }
+                else{
+                    Texts.add("KICK OFF! The game has just started!");
+                    Texts.add("45' - FIRST HALF ENDS,\n"+match_hometeam_name+" "+match_hometeam_halftime_score+" "+match_awayteam_name+" "+match_awayteam_halftime_score);
+                    Texts.add("46' - SECOND HALF IS UNDERWAY");
+                }
+
+            }
+            else if(!match_status.equals("")&&!match_status.equals("FT")&&!match_status.equals("HT")) {
                 String[] splited = match_status.split("'");
                 int hour = Integer.parseInt(splited[0]);
                 if (hour > 45) {
