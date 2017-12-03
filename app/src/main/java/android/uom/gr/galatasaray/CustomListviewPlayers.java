@@ -2,12 +2,15 @@ package android.uom.gr.galatasaray;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Κώστας Ποιμενίδης on 27/10/2017.
@@ -16,24 +19,41 @@ import android.widget.TextView;
 public class CustomListviewPlayers extends BaseAdapter {
 
     private final Activity context;
-    private String[] data1;
-    private String[] data2;
-    private Integer[] data3;
-    private Integer[] data4;
+    private ArrayList<String> data1;
+    private ArrayList<String> data2;
+    private ArrayList<Integer> data3;
+    private ArrayList<Integer> data4;
     private LayoutInflater inflater;
 
 
-
-
-
-     CustomListviewPlayers(Activity context, String[] itemname, String[]imgid,Integer[] data3,Integer[] data4) {
+    CustomListviewPlayers(Activity context) {
 
 
         this.context=context;
-        this.data1 =itemname;
-        this.data2=imgid;
-        this.data3 = data3;
-        this.data4 = data4;
+
+        DatabaseHelper mDatabaseHelper = new DatabaseHelper(context);
+         mDatabaseHelper.addElements();
+         Cursor data = mDatabaseHelper.getData();
+         ArrayList<String> playersName = new ArrayList<>();
+         ArrayList<String> playerPosition = new ArrayList<>();
+         ArrayList<Integer> playerImage = new ArrayList<>();
+         ArrayList<Integer> playerNumber = new ArrayList<>();
+//
+//
+         while(data.moveToNext()){
+             //get the value from the database in column 1
+             //then add it to the ArrayList
+             playersName.add(data.getString(1));
+             playerPosition.add(data.getString(6));
+             playerImage.add(data.getInt(3));
+             playerNumber.add(data.getInt(5));
+
+         }
+
+        this.data1 =playersName;
+        this.data2=playerPosition;
+        this.data3 = playerImage;
+        this.data4 = playerNumber;
 
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -41,7 +61,7 @@ public class CustomListviewPlayers extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return data1.length;
+        return data1.size();
     }
 
     @Override
@@ -70,23 +90,23 @@ public class CustomListviewPlayers extends BaseAdapter {
 
 
 
-        holder.name.setText(data1[position]);
-        holder.pos.setText(data2[position]);
-        holder.imgplayer.setImageResource(data3[position]);
+        holder.name.setText(data1.get(position));
+        holder.pos.setText(data2.get(position));
+        holder.imgplayer.setImageResource(data3.get(position));
 
-        if(data2[position].equals("Goalkeeper"))
+        if(data2.get(position).equals("Goalkeeper"))
             holder.shirtNoText.setImageResource(R.drawable.goalkeepercustom);
         else
             holder.shirtNoText.setImageResource(R.drawable.number);
 
-        if( data4[position]==0) {
+        if( data4.get(position)==0) {
             holder.No.setVisibility(TextView.INVISIBLE);
 
             holder.shirtNoText.setVisibility(TextView.INVISIBLE);
 
         }
         else{
-            String k= data4[position].toString();
+            String k= data4.get(position).toString();
             holder.No.setText(k);
             holder.No.setVisibility(TextView.VISIBLE);
 
@@ -97,12 +117,7 @@ public class CustomListviewPlayers extends BaseAdapter {
 
     };
 
-    public void setDatas(String[] data1,String[] data2,Integer[] data3,Integer[] data4) {
-        this.data1=data1;
-        this.data2=data2;
-        this.data3 = data3;
-        this.data4 = data4;
-    }
+
 
 
      static class ViewHolder {

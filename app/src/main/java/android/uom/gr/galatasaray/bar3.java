@@ -1,15 +1,17 @@
 package android.uom.gr.galatasaray;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Κώστας Ποιμενίδης on 11/10/2017.
@@ -17,28 +19,10 @@ import android.widget.TextView;
 
 public class bar3 extends android.support.v4.app.Fragment {
 
-    private TextView TextVieBar3;
-    ArrayAdapter<String> listAdapter;
+
     ListView playerlistView;
     CustomListviewPlayers customListviewPlayers;
-
-    private String[] playersName = {"Cédric Carrasso", "İsmail Çipe", "Eray İşcan", "Fernando Muslera", "Ahmet Şen", "Serdar Aziz", "Hakan Balta", "Ahmet Çalık", "Tarik Çamdal", "Jason Denayer", "Koray Günter"  , "Iasmin Latovlevici", "Martin Linnes"      , "Maicon"       , "Mariano"       ,
-            "Atalay Babacan"    , "Emrah Başsan"    , "Younès Belhanda"       , "Tolga Ciğerci"        , "Nigel de Jong"     , "Ryan Donk"             , "Sofiane Féghouli"     , "Fernando"           , "Recep Gül"         ,
-            "Umut Gündoğan"  , "Gökay Güney"     , "Selçuk İnan"     , "Papa N'Diaye"	   , "Yasin Öztekin"     , "Garry Rodrigues"   , "Eren Derdiyok", "Bafétimbi Gomis"   , "Sinan Gümüş"        ,
-            "Igor Tudor"};
-
-    private Integer[] playerImage = {R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4, R.drawable.a5, R.drawable.a6, R.drawable.a7, R.drawable.a8, R.drawable.a9, R.drawable.a10, R.drawable.a11, R.drawable.a12, R.drawable.a13, R.drawable.a14, R.drawable.a15,
-            R.drawable.a16, R.drawable.a17, R.drawable.a18, R.drawable.a19, R.drawable.a20, R.drawable.a21, R.drawable.a22, R.drawable.a23, R.drawable.a24, R.drawable.a25, R.drawable.a26, R.drawable.a27,
-            R.drawable.a28, R.drawable.a29, R.drawable.a30, R.drawable.a31, R.drawable.a32, R.drawable.a33, R.drawable.a34};
-
-    private String[] playerPosition={"Goalkeeper", "Goalkeeper", "Goalkeeper", "Goalkeeper", "Goalkeeper", "Defender", "Defender", "Defender", "Defender", "Defender", "Defender", "Defender", "Defender", "Defender", "Defender",
-            "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder", "Midfielder",
-            "Forward", "Forward", "Forward", "Manager"};
-
-    private Integer[] playerNumber={
-            16, 13, 67, 1, 12, 4, 22, 5, 21, 64, 28, 33, 14, 3, 2, 36, 17, 10, 6, 34, 15, 89, 25, 37, 90, 88, 8, 20, 7, 24, 9, 18, 11, 0};
-
-
+    DatabaseHelper mDatabaseHelper ;
 
 
 
@@ -55,8 +39,10 @@ public class bar3 extends android.support.v4.app.Fragment {
         //(σε ποιο activity ειμαστε, το layout που χρησιμοποιουμε,το id του textview που θελουμε να γινουν τα αντικειμενα, την λιστα)   !!!
         //σκοπος ειναι να κανει τα τα αντικειμενα της λιστας, TextView
 
+
+
         playerlistView = (ListView) view.findViewById(R.id.listview_players);
-        customListviewPlayers = new CustomListviewPlayers(this.getActivity(),playersName,playerPosition,playerImage,playerNumber);
+        customListviewPlayers = new CustomListviewPlayers(this.getActivity());
         playerlistView.setAdapter(customListviewPlayers);
 
 
@@ -81,6 +67,67 @@ public class bar3 extends android.support.v4.app.Fragment {
         return view;
     }
 
+    private void sqlitecode() {
 
+
+        mDatabaseHelper = new DatabaseHelper(getContext());
+        mDatabaseHelper.addElements();
+        Cursor data = mDatabaseHelper.getData();
+        ArrayList<String> listData = new ArrayList<>();
+//
+//
+        while(data.moveToNext()){
+            //get the value from the database in column 1
+            //then add it to the ArrayList
+            listData.add(data.getString(1));
+        }
+//
+//
+////
+//
+//
+//
+//        if(listData.isEmpty()){
+//
+//            for(int i = 0; i <playerNumber.length; i++) {
+//                boolean insertData = mDatabaseHelper.addData(playersName[i], playerNationality[i], playerImage[i], playerAge[i], playerNumber[i], playerPosition[i]);
+//
+//                Log.i("skataaa", String.valueOf(insertData));
+//            }
+//        }
+//        else
+//            Log.i("skataa","false");
+//
+//
+        if(listData.isEmpty())
+            Log.i("skataaa", "yes");
+        else
+            Log.i("skataaa", "no");
+
+        for(String k : listData) {
+            Log.i("skataaa", k);
+        }
+
+//
+//        mDatabaseHelper.deleteName(7,"makis");
+//
+//        Cursor dataa = mDatabaseHelper.getItemID("makis"); //get the id associated with that name
+////        int itemID = -1;
+////        while(data.moveToNext()){
+////            itemID = data.getInt(0);
+////        }
+////
+////        Log.i("skataaa",Integer.toString(itemID));
+//
+
+
+
+
+
+//        getContext().deleteDatabase("people_table");
+
+
+
+    }
 
 }

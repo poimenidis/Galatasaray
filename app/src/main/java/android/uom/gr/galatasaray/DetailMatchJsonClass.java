@@ -35,7 +35,7 @@ public class DetailMatchJsonClass {
         try {
             JSONArray jsonArray = new JSONArray(jsonString);//ksekiname etsi na diavazoyme JSON
 
-            Log.i("skataa", jsonString);
+
 
 
 

@@ -185,7 +185,6 @@ public class bar1 extends android.support.v4.app.Fragment {
                 pos=i;
         }
 
-        Log.i("skata", String.valueOf(pos));
 
 
         spinMatchBar = (Spinner) view.findViewById(R.id.spindates);
@@ -232,8 +231,10 @@ public class bar1 extends android.support.v4.app.Fragment {
 
 
 
+
         return view;
     }
+
 
 
 
