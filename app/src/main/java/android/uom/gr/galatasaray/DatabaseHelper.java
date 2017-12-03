@@ -81,11 +81,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             for (int i = 0; i < playerNumber.length; i++) {
                 boolean insertData = addData(playersName[i], playerNationality[i], playerImage[i], playerAge[i], playerNumber[i], playerPosition[i]);
 
-                Log.i("skataaa", String.valueOf(insertData));
+
             }
         }
-        else
-            Log.i("skataa","false");
+
     }
 
 

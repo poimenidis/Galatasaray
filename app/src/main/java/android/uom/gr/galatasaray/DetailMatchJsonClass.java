@@ -6,7 +6,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -52,9 +55,7 @@ public class DetailMatchJsonClass {
 
 
                 match_date = Noumero.getString("match_date");
-                String[] split = match_date.split("-");
-                match_date=split[2]+"/"+split[1];
-
+                match_date=getDate(match_date);
 
 
                 match_time = Noumero.getString("match_time");
@@ -226,5 +227,27 @@ public class DetailMatchJsonClass {
 
         return results;
 
+    }
+
+    private static String getDate(String match_date) {
+        Calendar c=Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String today = (df.format(c.getTime()));
+        c.add(Calendar.DATE, +1);
+        String Tomorrow = (df.format(c.getTime()));
+
+
+        if (today.equals(match_date)){
+            match_date="Today";
+        }
+        else if (Tomorrow.equals(match_date)){
+            match_date="Tomorrow";
+        }
+        else {
+            String[] split = match_date.split("-");
+            match_date = split[2] + "/" + split[1];
+        }
+
+        return match_date;
     }
 }
