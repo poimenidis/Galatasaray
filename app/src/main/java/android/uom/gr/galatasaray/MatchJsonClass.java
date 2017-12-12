@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Κώστας Ποιμενίδης on 29/10/2017.
@@ -63,16 +64,9 @@ public class MatchJsonClass {
 
                 match_time = Noumero.getString("match_time");
 
-//
-//                String[] splited = match_time.split(":");
-//                Integer hour = Integer.parseInt(splited[0]);
-//                TimeZone tz = TimeZone.getDefault();
-//                String ss =tz.getDisplayName(false, TimeZone.SHORT);
-//                String[] splited2 = ss.split("T");
-//                String[] splited3 = splited2[1].split(":");
-//                Integer hourplus = Integer.parseInt(splited3[0]);
-//                hour+=hourplus-1;
-//                splited[0]=hour.toString();
+
+                match_time=getTime(match_time);
+
 
 
 
@@ -109,6 +103,28 @@ public class MatchJsonClass {
 
         return results;
 
+    }
+
+    private static String getTime(String match_time) {
+
+
+        String k =Locale.getDefault().getCountry();
+        Log.i("skataaa",k);
+
+
+//                TimeZone tz = TimeZone.getDefault();
+//                String ss =tz.getDisplayName(false, TimeZone.SHORT);
+//                String[] splited2 = ss.split("T");
+//                String[] splited3 = splited2[1].split(":");
+//                Integer hourplus = Integer.parseInt(splited3[0]);
+//                hour+=hourplus-1;
+//                splited[0]=hour.toString();
+
+//        Date now = new Date();//Import part : x.0 for double number
+//        double offsetFromUtc = tz.getOffset(now.getTime()) / 3600000.0;
+//        Log.i("skataaa",Double.toString(offsetFromUtc));
+
+        return match_time;
     }
 
     private static String getDate(String match_date) {
