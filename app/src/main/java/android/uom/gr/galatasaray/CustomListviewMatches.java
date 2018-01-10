@@ -2,6 +2,7 @@ package android.uom.gr.galatasaray;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,7 @@ public class CustomListviewMatches extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        holder.teame1.setText(data1.get(position));
+        holder.team1.setText(data1.get(position));
         holder.score.setText(data2.get(position));
         holder.team2.setText(data3.get(position));
 
@@ -74,6 +75,26 @@ public class CustomListviewMatches extends BaseAdapter {
         }
         else
             holder.score.setBackgroundResource(R.color.main);
+
+        if(holder.team1.getText().equals("Galatasaray")) {
+            holder.team1.setTextAppearance(context, R.style.boldText);
+            holder.team1.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+            holder.team2.setTextAppearance(context, R.style.normalText);
+            holder.team2.setTextColor(ContextCompat.getColor(context, R.color.color_black));
+
+        }
+        else if(holder.team2.getText().equals("Galatasaray")) {
+            holder.team2.setTextAppearance(context, R.style.boldText);
+            holder.team2.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+            holder.team1.setTextAppearance(context, R.style.normalText);
+            holder.team1.setTextColor(ContextCompat.getColor(context, R.color.color_black));
+        }
+        else{
+            holder.team2.setTextAppearance(context, R.style.normalText);
+            holder.team2.setTextColor(ContextCompat.getColor(context, R.color.color_black));
+            holder.team1.setTextAppearance(context, R.style.normalText);
+            holder.team1.setTextColor(ContextCompat.getColor(context, R.color.color_black));
+        }
 
         return view;
 
@@ -90,13 +111,13 @@ public class CustomListviewMatches extends BaseAdapter {
     }
 
      class ViewHolder {
-        TextView teame1;
+        TextView team1;
         TextView score;
         TextView team2;
 
         public ViewHolder(View view) {
 
-            teame1 = (TextView) view.findViewById(R.id.team1);
+            team1 = (TextView) view.findViewById(R.id.team1);
 
             score = (TextView) view.findViewById(R.id.score);
 

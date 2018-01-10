@@ -2,6 +2,7 @@ package android.uom.gr.galatasaray;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,32 @@ public class CustomListviewTable extends BaseAdapter {
         holder.played.setText(data3.get(position));
         holder.gd.setText(data4.get(position));
         holder.points.setText(data5.get(position));
+
+
+        if(holder.teamname.getText().equals("Galatasaray")) {
+            holder.teamname.setTextAppearance(context, R.style.boldText);
+            holder.teamname.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+            holder.number.setTextAppearance(context, R.style.boldText);
+            holder.number.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+            holder.played.setTextAppearance(context, R.style.boldText);
+            holder.played.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+            holder.gd.setTextAppearance(context, R.style.boldText);
+            holder.gd.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+            holder.points.setTextAppearance(context, R.style.boldText);
+            holder.points.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        }
+        else {
+            holder.teamname.setTextAppearance(context, R.style.normalText);
+            holder.teamname.setTextColor(ContextCompat.getColor(context, R.color.color_black));
+            holder.number.setTextAppearance(context, R.style.normalText);
+            holder.number.setTextColor(ContextCompat.getColor(context, R.color.color_black));
+            holder.played.setTextAppearance(context, R.style.normalText);
+            holder.played.setTextColor(ContextCompat.getColor(context, R.color.color_black));
+            holder.gd.setTextAppearance(context, R.style.normalText);
+            holder.gd.setTextColor(ContextCompat.getColor(context, R.color.color_black));
+            holder.points.setTextAppearance(context, R.style.normalText);
+            holder.points.setTextColor(ContextCompat.getColor(context, R.color.color_black));
+        }
 
         return view;
 

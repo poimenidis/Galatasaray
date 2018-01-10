@@ -57,6 +57,7 @@ public class bar3 extends android.support.v4.app.Fragment {
                 Intent myIntent = new Intent(getActivity(), PlayersActivity.class);
                 myIntent.putExtra("player", position); //Optional parameters
                 startActivity(myIntent);
+                getActivity().overridePendingTransition(R.anim.down_to_up,R.anim.stay);
 
             }
         });

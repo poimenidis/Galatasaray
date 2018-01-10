@@ -120,5 +120,11 @@ public class PlayersActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        overridePendingTransition(R.anim.stay,R.anim.up_to_down);
+    }
 
 }

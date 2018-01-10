@@ -10,6 +10,8 @@
 
     <color name="matches">#ffff80</color>
 
-    <color name="main">#FFBB33</color>
+    <color name="main">#FFCD28</color>
+
+    <color name="color_black">#3D1255</color>
 
 </resources>

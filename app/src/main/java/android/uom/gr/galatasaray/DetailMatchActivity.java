@@ -57,7 +57,6 @@ public class DetailMatchActivity extends AppCompatActivity {
 
 
 
-
         private String code;
         private String todate;
         private String fromdate;
@@ -280,5 +279,12 @@ public class DetailMatchActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        overridePendingTransition(R.anim.stay,R.anim.up_to_down);
     }
 }

@@ -174,6 +174,7 @@ public class bar1 extends android.support.v4.app.Fragment {
                 myIntent.putExtra("fromdate",fromdate);
 
                 startActivity(myIntent);
+                getActivity().overridePendingTransition(R.anim.down_to_up,R.anim.stay);
 
 
             }
