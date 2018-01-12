@@ -2,6 +2,7 @@ package android.uom.gr.galatasaray;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -45,6 +46,17 @@ public class bar2 extends android.support.v4.app.Fragment {
     public void onStart() {
         super.onStart();
         swip.setRefreshing(true);
+        Handler mh = new Handler();
+        mh.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                if(swip.isRefreshing()) {
+                    swip.setRefreshing(false);
+                }
+
+            }
+        }, 7000);
         updateTable();
     }
 
@@ -69,12 +81,17 @@ public class bar2 extends android.support.v4.app.Fragment {
 
                 updateTable();
 
-//                Handler handler = new Handler();
-//                handler.postDelayed(new Runnable() {
-//                    public void run() {
-//                        swip.setRefreshing(false);
-//                    }
-//                }, 3000);
+                Handler mh = new Handler();
+                mh.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if(swip.isRefreshing()) {
+                            swip.setRefreshing(false);
+                        }
+
+                    }
+                }, 7000);
             }
         });
 

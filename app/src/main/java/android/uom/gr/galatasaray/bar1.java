@@ -3,6 +3,7 @@ package android.uom.gr.galatasaray;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -108,7 +110,19 @@ public class bar1 extends android.support.v4.app.Fragment {
             @Override
             public void onRefresh() {
                     updateMatches();
+                Handler mh = new Handler();
+                mh.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if(swip.isRefreshing()) {
+                            swip.setRefreshing(false);
+                        }
+
+                    }
+                }, 7000);
             }
+
         });
 
 
@@ -201,6 +215,17 @@ public class bar1 extends android.support.v4.app.Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 swip.setRefreshing(true);
+                Handler mh = new Handler();
+                mh.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if(swip.isRefreshing()) {
+                            swip.setRefreshing(false);
+                        }
+
+                    }
+                }, 7000);
 
                 if(customListviewMatches!=null)
                 customListviewMatches.clear();
@@ -279,6 +304,10 @@ public class bar1 extends android.support.v4.app.Fragment {
 
                 }
                 customListviewMatches.setDatas(data1,data2,data3,data4,data5);
+                if(data1.isEmpty()){
+                    Toast.makeText(getActivity(), "No data for these dates is available",
+                            Toast.LENGTH_LONG).show();
+                }
             }
             swip.setRefreshing(false);
         }
