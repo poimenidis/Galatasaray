@@ -194,7 +194,7 @@ public class bar2 extends android.support.v4.app.Fragment {
                 }
                 tableJsonStr = buffer.toString();
 
-                Log.i("TABLE: ",tableJsonStr);
+//                Log.i("TABLE: ",tableJsonStr);
 
                 List<TableJsonClass.Table> tableList =
                         TableJsonClass.getTableFromJson(tableJsonStr, 18);

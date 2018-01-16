@@ -109,7 +109,7 @@ public class MatchJsonClass {
 
 
         String k =Locale.getDefault().getCountry();
-        Log.i("skataaa",k);
+
 
 
 //                TimeZone tz = TimeZone.getDefault();
@@ -122,7 +122,6 @@ public class MatchJsonClass {
 
 //        Date now = new Date();//Import part : x.0 for double number
 //        double offsetFromUtc = tz.getOffset(now.getTime()) / 3600000.0;
-//        Log.i("skataaa",Double.toString(offsetFromUtc));
 
         return match_time;
     }

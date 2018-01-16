@@ -69,7 +69,6 @@
             android:layout_alignStart="@+id/Textplayers"
             android:layout_marginLeft="43dp"
             android:layout_marginTop="4dp"
-            android:text="makismakis"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
             app:layout_constraintLeft_toRightOf="@+id/imageplayer"
             app:layout_constraintTop_toTopOf="parent" />

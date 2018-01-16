@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,43 +81,9 @@ public class bar3 extends android.support.v4.app.Fragment {
             //then add it to the ArrayList
             listData.add(data.getString(1));
         }
-//
-//
-////
-//
-//
-//
-//        if(listData.isEmpty()){
-//
-//            for(int i = 0; i <playerNumber.length; i++) {
-//                boolean insertData = mDatabaseHelper.addData(playersName[i], playerNationality[i], playerImage[i], playerAge[i], playerNumber[i], playerPosition[i]);
-//
-//                Log.i("skataaa", String.valueOf(insertData));
-//            }
-//        }
-//        else
-//            Log.i("skataa","false");
-//
-//
-        if(listData.isEmpty())
-            Log.i("skataaa", "yes");
-        else
-            Log.i("skataaa", "no");
 
-        for(String k : listData) {
-            Log.i("skataaa", k);
-        }
 
-//
-//        mDatabaseHelper.deleteName(7,"makis");
-//
-//        Cursor dataa = mDatabaseHelper.getItemID("makis"); //get the id associated with that name
-////        int itemID = -1;
-////        while(data.moveToNext()){
-////            itemID = data.getInt(0);
-////        }
-////
-////        Log.i("skataaa",Integer.toString(itemID));
+
 //
 
 
