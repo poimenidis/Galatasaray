@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by Κώστας Ποιμενίδης on 29/10/2017.
@@ -107,21 +108,25 @@ public class MatchJsonClass {
 
     private static String getTime(String match_time) {
 
+        try {
+            String k =Locale.getDefault().getCountry();
 
-        String k =Locale.getDefault().getCountry();
+        String[] spliteddd = match_time.split(":");
+        int hour = Integer.parseInt(spliteddd[0]);
 
+                TimeZone tz = TimeZone.getDefault();
+                String ss =tz.getDisplayName(false, TimeZone.SHORT);
+                String[] splited2 = ss.split("T");
+                String[] splited3 = splited2[1].split(":");
+                Integer hourplus = Integer.parseInt(splited3[0]);
+                hour+=hourplus-1;
 
+                match_time=hour+":"+spliteddd[1];
 
-//                TimeZone tz = TimeZone.getDefault();
-//                String ss =tz.getDisplayName(false, TimeZone.SHORT);
-//                String[] splited2 = ss.split("T");
-//                String[] splited3 = splited2[1].split(":");
-//                Integer hourplus = Integer.parseInt(splited3[0]);
-//                hour+=hourplus-1;
-//                splited[0]=hour.toString();
+        } catch (Exception e) {
 
-//        Date now = new Date();//Import part : x.0 for double number
-//        double offsetFromUtc = tz.getOffset(now.getTime()) / 3600000.0;
+        }
+
 
         return match_time;
     }
