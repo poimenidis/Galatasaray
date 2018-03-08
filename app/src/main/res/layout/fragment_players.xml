@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="187dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/font4" />
+        app:srcCompat="@drawable/font5" />
 
     <ImageView
         android:id="@+id/imageViewPaixti"

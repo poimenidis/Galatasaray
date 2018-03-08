@@ -166,7 +166,7 @@ public class bar2 extends android.support.v4.app.Fragment {
                 // Possible parameters are avaiable at OWM's forecast API page, at
                 // http://openweathermap.org/API#forecast
                 //MODIFIED FOR CITY OF THESSALONIKI, GREECE
-                URL url = new URL("https://apifootball.com/api/?action=get_standings&league_id=376&APIkey="+key);
+                URL url = new URL("https://apifootball.com/api/?action=get_standings&league_id=63&APIkey="+key);
 
                 // Create the request to OpenWeatherMap, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();

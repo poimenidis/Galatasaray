@@ -11,5 +11,6 @@
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
     android:background="@drawable/spinner_item_border"
     android:text="Matchday 12"
+    android:textColor="@android:color/white"
     android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title" />
 

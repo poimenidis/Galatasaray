@@ -74,7 +74,7 @@ public class CustomListviewTable extends BaseAdapter {
         holder.points.setText(data5.get(position));
 
 
-        if(holder.teamname.getText().equals("Galatasaray")) {
+        if(holder.teamname.getText().equals("Aston Villa")) {
             holder.teamname.setTextAppearance(context, R.style.boldText);
             holder.teamname.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
             holder.number.setTextAppearance(context, R.style.boldText);

@@ -76,14 +76,14 @@ public class CustomListviewMatches extends BaseAdapter {
         else
             holder.score.setBackgroundResource(R.color.main);
 
-        if(holder.team1.getText().equals("Galatasaray")) {
+        if(holder.team1.getText().equals("Aston Villa")) {
             holder.team1.setTextAppearance(context, R.style.boldText);
             holder.team1.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
             holder.team2.setTextAppearance(context, R.style.normalText);
             holder.team2.setTextColor(ContextCompat.getColor(context, R.color.color_black));
 
         }
-        else if(holder.team2.getText().equals("Galatasaray")) {
+        else if(holder.team2.getText().equals("Aston Villa")) {
             holder.team2.setTextAppearance(context, R.style.boldText);
             holder.team2.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
             holder.team1.setTextAppearance(context, R.style.normalText);

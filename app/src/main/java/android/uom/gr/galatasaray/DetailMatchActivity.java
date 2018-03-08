@@ -222,7 +222,7 @@ public class DetailMatchActivity extends AppCompatActivity {
                     // http://openweathermap.org/API#forecast
                     //MODIFIED FOR CITY OF THESSALONIKI, GREECE
                     URL url = new URL
-                            ("https://apifootball.com/api/?action=get_events&from=" + fromdate + "&to=" + todate + "&league_id=376&match_id=" + code +
+                            ("https://apifootball.com/api/?action=get_events&from=" + fromdate + "&to=" + todate + "&league_id=63&match_id=" + code +
                                     "&APIkey=dffbf01eecc3cef8a8dab1e3d05b720f9d2335be742cf048b86161544d4f91b6");
 
                     // Create the request to OpenWeatherMap, and open the connection
